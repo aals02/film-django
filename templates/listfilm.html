@@ -5,17 +5,10 @@
     <title>Item List</title>
 </head>
 <body>
-    <h1>Item List</h1>
+    <h1>User Profile</h1>
     <ul>
         {% for item in items %}
-            <li>{{ item.name }} - {{ item.description }}</li>
-        {% endfor %}
-    </ul>
-    
-    <h2>User Profile</h2>
-    <ul>
-        {% for item in items %}
-            <li>{{ item.name }} - {{ item.age }} - {{ item.username}} - {{ item.password}} - {{ item.repeat_password}} - {{ item.email}}</li>  
+            <li>{{ item.name }} - {{ item.age }} - {{ item.username}} - {{ item.email}}</li>  
         {% endfor %}
     </ul>
 </body>
