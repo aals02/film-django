@@ -55,12 +55,25 @@ we could make a new branch for API still not sure, but uhh we could ask for more
 
 right. that's all
 
-PUSH -> git push
-Pulling in changes -> git pull
-git commit ->
-git add ->
-git fetch -> 
-git status -> 
+- PUSH -> git push
+- Pulling in changes -> git pull
+- git commit ->
+- git add ->
+- git fetch -> 
+- git status -> 
 
+API SECTION
+TMDb python documentation is helpful
 
+so make a new file inside film? or film search i forgot, we could call it tmdb.py
+
+then basically do the api requests there
+
+then we could connect it to the views file later on, calling on the function??? i'm not sure
+
+don't forget to migrate everytime you create a new "column"
+
+yes we can store it in the db, since it's for assignment (non-profit)
+
+andd also if they ask why change to python, obv mention flexibility, current trend, and future development (AI) as well as security for sure we can look into it again
 
