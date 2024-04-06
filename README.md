@@ -39,5 +39,18 @@ pass: 123
 
 after adding an item on FILMS, you can check if the item is added or not by doing just that.
 
-the files after the Django film
+the files after the Django film:
 
+The folder migrations, views, that's where we will do databases and queries in python
+basically where we make functions for the database tables and queries
+
+urls.py (under the film--pycache) is where we import functions, manage.py migrations
+
+python manage.py makemigration
+python manage.py migrate
+templates folder has html file
+(to migrate the tables)
+ 
+we could make a new branch for API still not sure, but uhh we could ask for more explanation later
+
+right. that's all
