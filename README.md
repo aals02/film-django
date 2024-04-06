@@ -54,3 +54,13 @@ urls.py (under the film--pycache) is where we import functions, manage.py migrat
 we could make a new branch for API still not sure, but uhh we could ask for more explanation later
 
 right. that's all
+
+PUSH -> git push
+Pulling in changes -> git pull
+git commit ->
+git add ->
+git fetch -> 
+git status -> 
+
+
+
