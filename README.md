@@ -46,9 +46,9 @@ basically where we make functions for the database tables and queries
 
 urls.py (under the film--pycache) is where we import functions, manage.py migrations
 
-python manage.py makemigration
-python manage.py migrate
-templates folder has html file
+- python manage.py makemigration
+- python manage.py migrate
+- templates folder has html file
 (to migrate the tables)
  
 we could make a new branch for API still not sure, but uhh we could ask for more explanation later
