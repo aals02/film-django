@@ -3,20 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Item List</title>
-    {% comment %} make file for css and put this in it  {% endcomment %}
     <style> 
         body {text-align: center; font-size: medium; background-color: lightgrey; font-family: Monospace, Helvetica; color: black;}
         .white {background-color: white; height: 30px; margin: 0; padding: 15px;}
-        table {margin: 0 auto;}
+        table {margin: 0 auto; border-collapse: collapse;}
+        th, td {padding: 8px; border: 1px solid black;}
     </style>
 </head>              
 <body>
     <h1>User Profile</h1>
-    <ul>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
         {% for item in items %}
-            <li>{{ item.name }} - {{ item.age }} - {{ item.username}} - {{ item.email}}</li>  
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.age }}</td>
+                <td>{{ item.username }}</td>
+                <td>{{ item.email }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 </body>
 </html>
+
 
