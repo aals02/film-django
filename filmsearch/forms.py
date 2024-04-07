@@ -1,8 +1,6 @@
 
 from django import forms
 from .models import User
-from formValidationApp.models import *
-
 
 class UserForm(forms.ModelForm):
     class Meta:
