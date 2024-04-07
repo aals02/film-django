@@ -33,8 +33,8 @@ class UserForm(forms.ModelForm):
         fields = ['name', 'dob', 'username', 'password', 'email']
 
     def clean(self):
-        # cleaned_data = super().clean()
-        super(UserForm, self).clean()
+        cleaned_data = super().clean()
+        # super(UserForm, self).clean()
         
         password = self.cleaned_data.get('password')
         username = self.cleaned_data.get('username')
