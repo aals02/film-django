@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from .forms import UserForm
-
-# Create your views here.
+from .models import User
 
 #  user profile view
-from .models import User
 def userProfile(request):
     # if request.method == 'POST':
     #     form = UserForm(request.POST)
