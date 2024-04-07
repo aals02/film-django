@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UserForm
-from .models import User
+from .models import User, Friends, Moviepreference, APIstore
 
 #  user profile view
 def userProfile(request):
