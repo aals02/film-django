@@ -10,7 +10,17 @@ def userProfile(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('profileUser.html') #send to profile page
+            return redirect('') #send to profile page
+    else:
+        form = UserForm()
+    return render(request, 'profileUser.html', {'form': form})
+
+def signupprofile(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('') #send to profile page
     else:
         form = UserForm()
     return render(request, 'signup.html', {'form': form})
