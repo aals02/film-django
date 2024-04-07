@@ -1,6 +1,4 @@
-Here's the code with proper indentations:
 
-```python
 from django import forms
 from .models import User
 from formValidationApp.models import *
