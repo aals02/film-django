@@ -23,8 +23,8 @@ def userProfile(request):
 # add query to get only user details of user thats logged in
 
  # user friend list view
-# def friendList(request):
-#     items = Friends.objects.all()
-#     return render(request, 'listfilm.html', {'items': items})
+def friendList(request):
+    items = Friends.objects.all()
+    return render(request, 'listfilm.html', {'items': items})
 
 
