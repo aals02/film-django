@@ -22,7 +22,12 @@ class UserForm(forms.ModelForm):
 
         if len(password) > 100:
             self._errors['password'] = self.error_class([
-                'Maximum 100 characters allowed'])        
+                'Maximum 100 characters allowed'])  
+            
+        if len(password) = '':
+            self._errors['password'] = self.error_class([
+                'Please enter paasword']) 
+        //add validation for blank password & username
 
         if len(username) < 6:
             self._errors['username'] = self.error_class([
