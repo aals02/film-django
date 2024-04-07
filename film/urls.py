@@ -22,6 +22,6 @@ from filmsearch.views import signupprofile
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("profile/", userProfile, name="userProfile")
+    # path("profile/", userProfile, name="userProfile")
     path("signup/", signupprofile, name="signup")
 ]
