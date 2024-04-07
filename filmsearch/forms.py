@@ -3,31 +3,31 @@ from .models import User
 from logging import PlaceHolder
 
 class UserForm(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'name'
-    }))
-    dob = forms.CharField(widget=forms.Textarea(attrs={
-        'class': 'form-control',
-        'placeholder': 'age'
-    }))
-    username = forms.CharField(widget=forms.Textarea(attrs={
-        'class': 'form-control',
-        'placeholder': 'username'
-    }))
-    password = forms.CharField(widget=forms.Textarea(attrs={
-        'class': 'form-control',
-        'placeholder': 'password'
-    }))
-    email = forms.CharField(widget=forms.Textarea(attrs={
-        'class': 'form-control',
-        'placeholder': 'email'
-    }))
-    # needs to be drop down with images not text area
-    # pfp = forms.CharField(widget=forms.Textarea(attrs={
+    # name = forms.CharField(widget=forms.TextInput(attrs={
     #     'class': 'form-control',
-    #     'placeholder': 'pfp'
+    #     'placeholder': 'name'
     # }))
+    # dob = forms.CharField(widget=forms.Textarea(attrs={
+    #     'class': 'form-control',
+    #     'placeholder': 'age'
+    # }))
+    # username = forms.CharField(widget=forms.Textarea(attrs={
+    #     'class': 'form-control',
+    #     'placeholder': 'username'
+    # }))
+    # password = forms.CharField(widget=forms.Textarea(attrs={
+    #     'class': 'form-control',
+    #     'placeholder': 'password'
+    # }))
+    # email = forms.CharField(widget=forms.Textarea(attrs={
+    #     'class': 'form-control',
+    #     'placeholder': 'email'
+    # }))
+    # # needs to be drop down with images not text area
+    # # pfp = forms.CharField(widget=forms.Textarea(attrs={
+    # #     'class': 'form-control',
+    # #     'placeholder': 'pfp'
+    # # }))
     class Meta:
         model = User
         fields = ['name', 'dob', 'username', 'password', 'email']
