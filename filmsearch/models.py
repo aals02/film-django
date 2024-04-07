@@ -17,9 +17,43 @@ class User(models.Model):
         return self.name
     
 # friend list
-# class Friends(models.Model):
-#     friend_name = models.CharFields(max_length=100, blank = False, null = False)
-#     friend_username = models.CharFields(max_length=100, blank = False, null = False)
+class Friends(models.Model):
+    friend_name = models.CharFields(max_length=100, blank = False, null = False)
+    friend_username = models.CharFields(max_length=100, blank = False, null = False)
+    user_id = models.CharFields(max_length=100, blank = False, null = False)
+    friend_id = models.CharFields(max_length=100, blank = False, null = False)
     
-#     def __str__(self):
-#         return self.friend_name
+    def __str__(self):
+        return self.friend_name
+        
+# movie preferences
+class Moviepreference(models.Model):
+    Yes = 'Y'
+    No = 'N'
+    MOVIE_CHOICES = (
+        (Yes,'Yes'),
+        (No,'No'),
+    )
+    movie_id = models.CharFields(max_length=100, blank = False, null = False)
+    user_id = models.CharFields(max_length=100, blank = False, null = False)
+    yes_no = models.CharFields(max_length=3, choices=MOVIE_CHOICES,default=Yes)
+    
+    def __str__(self):
+        return self.movie_id
+
+# storing API
+
+class APIstore(models.Model):
+    movie_id = models.CharFields(max_length=100, blank = False, null = False)
+    genre_id = models.CharFields(max_length=100, blank = False, null = False)
+    
+    def __str__(self):
+        return self.movie_id
+
+
+
+
+    
+    
+
+
