@@ -27,7 +27,7 @@ class UserForm(forms.ModelForm):
         if len(password) = '':
             self._errors['password'] = self.error_class([
                 'Please enter paasword']) 
-        //add validation for blank password & username
+#add validation for blank password & username
 
         if len(username) < 6:
             self._errors['username'] = self.error_class([
