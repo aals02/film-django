@@ -18,7 +18,7 @@
         {% for item in items %}
             <tr>
                 <th>Name</th>
-                <td>{{htmlspecialchars(item.name)}}</td>
+                <td>{{item.name}}</td>
             </tr>
             <tr>
                 <th>Age</th>
@@ -26,11 +26,11 @@
             </tr>
             <tr>
                 <th>Username</th>
-                <td>{{htmlspecialchars(item.username)}}</td>
+                <td>{{item.username}}</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>{{htmlspecialchars(item.email)}}</td>
+                <td>{{item.email}}</td>
             </tr>
         {% endfor %}
     </table>
