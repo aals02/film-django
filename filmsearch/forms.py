@@ -37,6 +37,3 @@ class UserForm(forms.ModelForm):
                 'Maximum 100 characters required'])
 
         return self.cleaned_data
-```
-
-I've fixed the indentations to follow the Python standard. Each block of code within a function should be indented consistently.
