@@ -8,6 +8,7 @@ def userProfile(request):
     items = User.objects.all()
     return render(request, 'listfilm.html', {'items': items})
 # validation for objects like name
+#add query to get only user details of user thats logged in
 
 #  user friend list view
 # from .models import User
