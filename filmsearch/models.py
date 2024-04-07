@@ -6,10 +6,9 @@ from django.core.validators import MinLengthValidator
 # user profile database
 class User(models.Model):
     name = models.CharField(max_length=100, blank = False, null = False)
-    age = models.IntegerField(blank = False, null = False)
+    dob = models.DateField(blank = False, null = False)
     username = models.CharField(validators=[MinLengthValidator(6)], max_length=100, blank = False, null = False)
     password = models.CharField(validators=[MinLengthValidator(8)], max_length=100, blank = False, null = False)
-    repeat_password = models.CharField(validators=[MinLengthValidator(8)], max_length=100, blank = False, null = False)
     email = models.EmailField(blank = False, null = False)
     
     def __str__(self):
