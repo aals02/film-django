@@ -2,9 +2,6 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 import datetime
 
-
-# Create your models here.
-
 # user profile database
 class User(models.Model):
     name = models.CharField(max_length=100, blank = False, null = False)
@@ -42,7 +39,6 @@ class Moviepreference(models.Model):
         return self.movie_id
 
 # storing API
-
 class APIstore(models.Model):
     movie_id = models.CharField(max_length=100, blank = False, null = False)
     genre_id = models.CharField(max_length=100, blank = False, null = False)
