@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Item List</title>
-    {% comment %} make file for css and put this in it  {% endcomment %}
+    //make file for css and put this in it
     <style> 
         body {text-align: center; font-size: large; background-color: lightgrey; font-family: Monospace, Helvetica; color: black;}
-        h1 {padding: 8px; background-color: white; height: 50px; margin: 0; padding: 25px;}
+        h1 {padding: 8px; background-color: white; height: 50px; margin: auto; padding: 25px;}
         table {background-color: rgb(178, 172, 136); border-collapse: collapse; margin: auto; margin-top: 100px;}
         th, td {font-size: 50px; text-align: center; padding: 8px;}
     </style>
 </head>              
 <body>
     <h1>User Profile</h1>
+    //make table downwards rectangle instead of sideways ahahaha
     <table>
         {% for item in items %}
             <tr>
                 <th>Name</th>
-                <td>{{ item.name }}</td>
+                <td>{{htmlspecialchars(item.name)}}</td>
             </tr>
             <tr>
                 <th>Age</th>
-                <td>{{ item.age }}</td>
+                <td>{{item.age}}</td>
             </tr>
             <tr>
                 <th>Username</th>
-                <td>{{ item.username }}</td>
+                <td>{{htmlspecialchars(item.username)}}</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>{{ item.email }}</td>
+                <td>{{htmlspecialchars(item.email)}}</td>
             </tr>
         {% endfor %}
     </table>
