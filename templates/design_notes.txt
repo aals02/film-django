@@ -1,0 +1,11 @@
+LOG IN / SIGN UP / PROFILE
+  instead of asking people to upload a picture as a profile we can just pick up some "character" online
+  make it a drop down menu so they can select those "character"
+  Something like this: https://www.behance.net/gallery/64262369/Settings?tracking_source=search_projects|user+settings+profile&l=53
+  colour pallete
+  - #000000 balck
+  - #etc etc
+
+RECOMMENDATIONS
+    something like this??: https://www.behance.net/gallery/165052665/The-Witcher-movie-website-page?tracking_source=search_projects|movie+website&l=44
+  
