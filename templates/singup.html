@@ -1,1 +1,33 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item List</title>
+    <!--put this in stylesheet-->
+    <!--defo needs changing tho lol-->
+    <style> 
+        body {text-align: center; font-size: large; background-color: black; font-family: Sans-Serif, Helvetica; color: white;}
+        h1 {margin: auto; padding: 25px; font-size: xxx-large;}
+        table {background-color: white; border-collapse: collapse; border: 1px solid hotpink;; margin: auto; margin-top: 100px; box-shadow: 10px 10px 5px hotpink;}
+        th, td {color: black; font-size: 50px; text-align: center; padding: 8px;}
+        .error {font-size: x-small; font-weight: bold;}
+    </style>
+</head>              
+<body>
+  <h1>Create Account</h1>
+  <form method="POST" action="">
+        {% csrf_token %}
+            {{form.name}}
+            {{form.name.errors}}
+            {{form.dob}}
+            {{form.dob.errors}}
+            {{form.username}}
+            {{form.username.errors}}
+            {{form.password}}
+            {{form.password.errors}}
+            {{form.email}}
+            {{form.email.errors}}
+        <button name="submit">Submit</button>
+    </form>
+</body>
+</html>
