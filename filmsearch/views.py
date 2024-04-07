@@ -10,10 +10,10 @@ def userProfile(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(' ') #send to profile page
+            return redirect('profileUser.html') #send to profile page
     else:
         form = UserForm()
-    return render(request, 'profileUser.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
     
     # items = User.objects.all()
     # return render(request, 'profileUser.html', {'items': items})
