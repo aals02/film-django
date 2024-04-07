@@ -24,9 +24,9 @@ class UserForm(forms.ModelForm):
             self._errors['password'] = self.error_class([
                 'Maximum 100 characters allowed'])  
             
-        if len(password) = '':
-            self._errors['password'] = self.error_class([
-                'Please enter paasword']) 
+# if len(password) = '':
+#self._errors['password'] = self.error_class([
+#'Please enter paasword']) 
 #add validation for blank password & username
 
         if len(username) < 6:
