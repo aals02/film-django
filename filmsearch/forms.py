@@ -1,20 +1,18 @@
-
 from django import forms
 from .models import User
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['name', 'age', 'username', 'password', 'repeat_password', 'email']
+        fields = ['name', 'age', 'username', 'password', 'email']
 
     def clean(self):
         cleaned_data = super().clean()
         password = self.cleaned_data.get('password')
-        repeat_password = self.cleaned_data.get('repeat_password')
         username = self.cleaned_data.get('username')
 
-        if password != repeat_password:
-            raise forms.ValidationError("The passwords do not match.")
+        # if password != repeat_password:
+        #     raise forms.ValidationError("The passwords do not match.")
 
         if len(password) < 6:
             self._errors['password'] = self.error_class([
@@ -22,12 +20,7 @@ class UserForm(forms.ModelForm):
 
         if len(password) > 100:
             self._errors['password'] = self.error_class([
-                'Maximum 100 characters allowed'])  
-            
-# if len(password) = '':
-#self._errors['password'] = self.error_class([
-#'Please enter paasword']) 
-#add validation for blank password & username
+                'Maximum 100 characters allowed'])
 
         if len(username) < 6:
             self._errors['username'] = self.error_class([
