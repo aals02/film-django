@@ -16,17 +16,7 @@
 <body>
   <h1>Create Account</h1>
   <form method="POST" action="http://127.0.0.1:8000/singup.html/">
-        {% csrf_token %}
-            {{form.name}}
-            {{form.name.errors}}
-            {{form.dob}}
-            {{form.dob.errors}}
-            {{form.username}}
-            {{form.username.errors}}
-            {{form.password}}
-            {{form.password.errors}}
-            {{form.email}}
-            {{form.email.errors}}
+        
         <button name="submit">Submit</button>
     </form>
 </body>
