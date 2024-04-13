@@ -20,6 +20,12 @@ def userProfile(request):
 def friendList(request):
     items = Friends.objects.all()
     return render(request, 'listfilm.html', {'items': items})
+    
+def signUp(request):
+    return render(request, 'singup.html')
+
+def login(request):
+    return render(request, 'login.html')
 
 
 # add query to add user data from form
