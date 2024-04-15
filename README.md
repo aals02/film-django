@@ -1,8 +1,6 @@
-django required
+# DEPLOYMENT info
 
-# DEPLOYMENT
-
-
+COMP208: MovieMate
 okay listen up who have windows cause literally it killed me
 -monica
 
