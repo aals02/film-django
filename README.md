@@ -46,6 +46,8 @@ the files after the Django film:
 in views, that's where we will do queries in python and in models, that's where we will make the database
 basically where we make functions for the database tables and queries
 
+whenever you make a new database or make changes to it do python manage.py makemigrations to check theres no errors then do python manage.py migrate
+
 urls.py (under the film--pycache) is where we import functions, manage.py migrations
 
 - python manage.py makemigration
