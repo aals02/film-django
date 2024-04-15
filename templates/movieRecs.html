@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+</head>
+<body>
+<h1>Movie List</h1>
+<!-- Use a for loop to iterate through the movies data -->
+<ul>
+    {% for film in films %}
+        <li>
+            <h3>{{ film.name }}</h3>
+            <br>
+            <!-- Display the poster image -->
+            <img src="{{ film.poster_image }}" alt="poster pic" style="width:400px; height:auto;">
+            <br>
+            <p>{{ film.description }}</p>
+        </li>
+        {% empty %}
+        <li>No films to display.</li>
+    {% endfor %}
+</ul>
 
+<!-- Pagination links -->
+<div class="pagination">
+    <span class="step-links">
+{#        {% if films.has_previous %}#}
+{#            <a href="?page=1">&laquo; first</a>#}
+{#            <a href="?page={{ films.previous_page_number }}">previous</a>#}
+{#        {% endif %}#}
+
+        <span class="current">
+            Page {{ films.number }} of {{ films.paginator.num_pages }}.
+        </span>
+
+        {% if films.has_next %}
+{#            CHANGE THIS INTO BUTTONS#}
+            <a href="?page={{ films.next_page_number }}">LIKE</a>
+            <a href="?page={{ films.next_page_number }}">DISLIKE</a>
+
+{#            <a href="?page={{ films.paginator.num_pages }}">last &raquo;</a>#}
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

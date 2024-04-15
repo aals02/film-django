@@ -19,10 +19,10 @@ class Friends(models.Model):
     friend_username = models.CharField(max_length=100, blank = False, null = False)
     user_id = models.CharField(max_length=100, blank = False, null = False)
     friend_id = models.CharField(max_length=100, blank = False, null = False)
-    
+
     def __str__(self):
         return self.friend_name
-        
+
 # movie preferences
 class Moviepreference(models.Model):
     Yes = 'Y'
@@ -34,7 +34,7 @@ class Moviepreference(models.Model):
     movie_id = models.CharField(max_length=100, blank = False, null = False)
     user_id = models.CharField(max_length=100, blank = False, null = False)
     yes_no = models.CharField(max_length=3, choices=MOVIE_CHOICES,default=Yes)
-    
+
     def __str__(self):
         return self.movie_id
 
@@ -42,14 +42,21 @@ class Moviepreference(models.Model):
 class APIstore(models.Model):
     movie_id = models.CharField(max_length=100, blank = False, null = False)
     genre_id = models.CharField(max_length=100, blank = False, null = False)
-    
+
     def __str__(self):
         return self.movie_id
 
 
 
 
-    
-    
 
+    
+#     def __str__(self):
+#         return self.friend_name
+class Films(models.Model):
+    name = models.CharField(max_length = 100)
+    description = models.TextField()
+    poster_image = models.URLField(default='https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg')
+    def __str__(self):
+        return self.name
 

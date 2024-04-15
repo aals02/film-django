@@ -1,3 +1,5 @@
+# DEPLOYMENT info
+
 COMP208: MovieMate
 okay listen up who have windows cause literally it killed me
 -monica
@@ -26,7 +28,9 @@ python for MAC
 7. and then do "code film django"
 8. once you have the repository, you run it by using python manage.py runserver
 
+
 SOOO once evrything is done
+
 you can click on the url
 
 and goes on the search tab, add -> /admin/
@@ -34,17 +38,22 @@ username: aals
 pass: 123
 
 after adding an item on FILMS, you can check if the item is added or not by doing just that.
+
 the files after the Django film:
 
 in views, that's where we will do queries in python and in models, that's where we will make the database
 basically where we make functions for the database tables and queries
 
-whenever you make a new database or make changes to it do python manage.py makemigrations to check theres no errors then do python manage.py migrate 
+whenever you make a new database or make changes to it do python manage.py makemigrations to check theres no errors then do python manage.py migrate
 
-urls.py (under the film--pycache) is where we import functions
+urls.py (under the film--pycache) is where we import functions, manage.py migrations
 
+- python manage.py makemigration
+- python manage.py migrate
 - templates folder has html file
 (to migrate the tables)
+ 
+we could make a new branch for API still not sure, but uhh we could ask for more explanation later
 
 python manage.py runserver to run server and get url
 
@@ -53,7 +62,8 @@ python manage.py runserver to run server and get url
 - git fetch -> fetch the changes made
 - git commit ->
 - git add ->
-- git status ->
+- git fetch -> 
+- git status -> 
 
 only these files should be modified: urls.py, admin.py, views.py, forms.py, models.py and the files in the templates folder.
 
@@ -67,10 +77,16 @@ https://www.w3schools.com/bootstrap/bootstrap_get_started.asp
 
 API SECTION
 TMDb python documentation is helpful
+
 so make a new file inside film? or film search i forgot, we could call it tmdb.py
+
 then basically do the api requests there
+
 then we could connect it to the views file later on, calling on the function??? i'm not sure
+
+don't forget to migrate everytime you create a new "column"
 
 yes we can store it in the db, since it's for assignment (non-profit)
 
 andd also if they ask why change to python, obv mention flexibility, current trend, and future development (AI) as well as security for sure we can look into it again
+
