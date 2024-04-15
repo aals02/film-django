@@ -1,4 +1,7 @@
 # DEPLOYMENT info
+run python3 manage.py api_call 1 5
+// page number specified at end (start and end)
+// populates the DB by actually calling the API 
 
 COMP208: MovieMate
 okay listen up who have windows cause literally it killed me
