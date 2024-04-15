@@ -39,16 +39,23 @@ def movie_List(request):
 
     # Create Films objects only if they don't already exist
     for film_data in api_films:
-        Films.objects.get_or_create(
+        poster_url = "https://image.tmdb.org/t/p/w500" + film_data['poster_path']
+        print("poster_path:", film_data['poster_path'])  # This will print the poster_path from the API
+        print("Poster URL:", poster_url)  # This will print the full URL
+
+        film, created = Films.objects.get_or_create(
             name=film_data['original_title'],
-            description=film_data['overview'],
-            poster_image=f"https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+            defaults={
+                'description': film_data['overview'],
+                'poster_image': poster_url
+            }
         )
 
     films = Films.objects.all()
 
     print(api_films)
     return render(request, 'movieRecs.html', {'films': films})
+
 
 
 
