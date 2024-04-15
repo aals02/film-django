@@ -1,5 +1,7 @@
 django required
 
+# DEPLOYMENT
+
 
 okay listen up who have windows cause literally it killed me
 -monica
@@ -76,4 +78,3 @@ don't forget to migrate everytime you create a new "column"
 yes we can store it in the db, since it's for assignment (non-profit)
 
 andd also if they ask why change to python, obv mention flexibility, current trend, and future development (AI) as well as security for sure we can look into it again
-
