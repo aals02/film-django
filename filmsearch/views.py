@@ -41,8 +41,8 @@ def movie_List(request):
     for film_data in api_films:
         Films.objects.get_or_create(
             name=film_data['original_title'],
-            defaults={'description': film_data['overview'],
-                    'poster_image': f"https://media.themoviedb.org/t/p/w600_and_h900_bestv2{film_data['poster_path']}"}
+            description=film_data['overview'],
+            poster_image=f"https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
         )
 
     films = Films.objects.all()

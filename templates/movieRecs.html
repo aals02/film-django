@@ -12,15 +12,14 @@
     {% for film in films %}
     <li>
         <h3>{{ film.name }}</h3>
-<!--        &lt;!&ndash; Assuming you have a release_date field &ndash;&gt;-->
-<!--        <p>Released on {{ film.release_date }}</p>-->
+        <br>
         <!-- Display the poster image -->
-        <img src="{{ film.poster_image }}" alt="Poster for {{ film.name }}">
-        <!-- Display the film description -->
+        <img src="{{ film.poster_image}}" style="width:100px; height:auto;">
+        <br>
         <p>{{ film.description }}</p>
     </li>
     {% empty %}
-    <li>No films to display.</li>
+        <li>No films to display.</li>
     {% endfor %}
 </ul>
 </body>

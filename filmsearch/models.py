@@ -25,7 +25,7 @@ class User(models.Model):
 class Films(models.Model):
     name = models.CharField(max_length = 100)
     description = models.TextField()
-    poster_image = models.TextField(null = True)
+    poster_image = models.ImageField(null=True)
     def __str__(self):
         return self.name
 
