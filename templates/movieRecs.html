@@ -14,7 +14,9 @@
         <h3>{{ film.name }}</h3>
         <br>
         <!-- Display the poster image -->
-        <img src="{{ film.poster_image}}" style="width:100px; height:auto;">
+        <p>{{ film.poster_image }}</p>
+        <img src="{% add 'https://image.tmdb.org/t/p/w500' film.poster_image %}" alt="poster pic" style="width:100px; height:auto;">
+        <img src="https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" alt="poster pic" style="width:100px; height:auto;">
         <br>
         <p>{{ film.description }}</p>
     </li>
