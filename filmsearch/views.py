@@ -1,6 +1,6 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from .forms import UserForm
-from .APIConnection import connect
 from .models import Films
 
 # Create your views here.
@@ -30,30 +30,20 @@ def userProfile(request):
 
 
 def movie_List(request):
-
-    api_films = connect()  # This should return a list of dictionaries
-
-    # You might want to clear the Films table before repopulating it
-    # Be cautious with this as it will delete all existing entries in the Films table
-    # Films.objects.all().delete()
-
-    # Create Films objects only if they don't already exist
-    for film_data in api_films:
-        poster_url = "https://image.tmdb.org/t/p/w500" + film_data['poster_path']
-        print("poster_path:", film_data['poster_path'])  # This will print the poster_path from the API
-        print("Poster URL:", poster_url)  # This will print the full URL
-
-        film, created = Films.objects.get_or_create(
-            name=film_data['original_title'],
-            defaults={
-                'description': film_data['overview'],
-                'poster_image': poster_url
-            }
-        )
-
     films = Films.objects.all()
 
-    print(api_films)
+    # Pagination
+    paginator = Paginator(films, 1)  # 1 film per page
+    page = request.GET.get('page')
+    try:
+        films = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        films = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        films = paginator.page(paginator.num_pages)
+
     return render(request, 'movieRecs.html', {'films': films})
 
 
