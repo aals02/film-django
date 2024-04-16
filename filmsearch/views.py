@@ -96,25 +96,7 @@ def update_movie_preference(request):
         return HttpResponse('You must be logged in to update preferences', status=401)
 
 
-# def update_movie_preference(request):
-#     if request.method == 'POST':
-#         movie_id = request.POST.get('movie_id')
-#         action = request.POST.get('action')
 
-#         # Check valid action
-#         if action not in ['like', 'dislike']:
-#             return HttpResponse('Invalid action', status=400)
-
-#         # Map action to 'Y' or 'N'
-#         yes_no = Moviepreference.Yes if action == 'like' else Moviepreference.No
-
-#         # Update or create the preference
-#         Moviepreference.objects.update_or_create(
-#             user_id=request.user.id,  # Assuming you are using Django's authentication system
-#             movie_id=movie_id,
-#             defaults={'yes_no': yes_no}
-#         )
-#         return redirect('movie_List')  # Redirect after POST to avoid resubmission
 def movie_preference(request):
     if request.user.is_authenticated:
         liked_movies = Moviepreference.objects.filter(user_id=request.user.id, preference=Moviepreference.LIKE)
