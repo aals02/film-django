@@ -1,1 +1,21 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Friend</title>
+</head>
+<body>
+    <div>
+        <h2>Add a Friend</h2>
+        <form method="post" action="{% url 'add_friend' %}">
+            {% csrf_token %}
+            <div>
+                <label for="friend_username">Friend's Username:</label>
+                <input type="text" id="friend_username" name="friend_username" placeholder="Enter friend's username" required>
+            </div>
+            <button type="submit">Add Friend</button>
+        </form>
+    </div>
+</body>
+</html>
