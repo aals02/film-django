@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand
-
 from filmsearch.APIConnection import retrieve_movies, retrieve_genres
 from filmsearch.models import Films, Genre
 
@@ -33,14 +32,21 @@ class Command(BaseCommand):
             print("poster_path:", film_data['poster_path'])  # This will print the poster_path from the API
             print("Poster URL:", poster_url)  # This will print the full URL
 
-            Films.objects.get_or_create(
+            film, created = Films.objects.get_or_create(
                 name=film_data['original_title'],
                 defaults={
                     'description': film_data['overview'],
                     'poster_image': poster_url,
                     'lang': film_data['original_language'],
                     'rating': film_data['vote_average'],
-                    'release_date': film_data['release_date'],
-                    'genres': film_data['genre_ids']
+                    'release_date': film_data['release_date']
                 }
             )
+
+            # Retrieve or create genre instances and add them to the film
+            genre_ids = film_data['genre_ids']
+            g_list = list()
+            for gid in genre_ids:
+                genre_name = Genre.objects.get_or_create(api_genre_id=gid)[0]
+                g_list.append(genre_name)
+            film.genres.set(g_list)
