@@ -2,6 +2,7 @@ from django import forms
 from .models import User
 from logging import PlaceHolder
 
+
 class UserForm(forms.ModelForm):
     # name = forms.CharField(widget=forms.TextInput(attrs={
     #     'class': 'form-control',
