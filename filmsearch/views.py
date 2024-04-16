@@ -78,7 +78,7 @@ def movie_List(request):
         films = paginator.page(paginator.num_pages)
 
     
-from django.shortcuts import redirect
+//x bit
 
 def signup(request):
     if request.method == 'POST':
