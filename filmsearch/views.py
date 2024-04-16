@@ -50,7 +50,7 @@ def login(request):
 # Xiaowei
 
 # query for log in if username and password match user in database
-# forgot password part - send email to reset
+# forgot password part - send email to reset 
 # validate password
 # hashing passwords
 
