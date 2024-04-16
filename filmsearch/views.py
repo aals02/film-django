@@ -34,8 +34,6 @@ def login(request):
     return render(request, 'login.html')
 
 #Aaliyah and samiya
-
-# add query to add user data from form 
 # add query to display/get user details of user thats logged in for profile
 # query for adding movies to databse user swipes right on and left on
 # allowing user to edit profile - query to alter/update database
