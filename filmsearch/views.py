@@ -1,14 +1,8 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
-from django.utils.encoding import force_str
 from .forms import UserForm
 from .models import Films
 from .models import User, Friends, Moviepreference, APIstore
-from .forms import SignUpForm
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
-
-
 
 
 
@@ -16,6 +10,15 @@ from django.contrib.auth.forms import AuthenticationForm
 #  user profile view
 from .models import User
 def userProfile(request):
+    # if request.method == 'POST':
+    #     form = UserForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('') #send to profile page
+    # else:
+    #     form = UserForm()
+    # return render(request, 'profileUser.html', {'form': form})
+
      items = User.objects.all()
      return render(request, 'profileUser.html', {'items': items})
 
@@ -68,39 +71,7 @@ def movie_List(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         films = paginator.page(paginator.num_pages)
 
-    
-//x bit
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
-
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')  # Redirect to a success page.
-            else:
-                # Return an 'invalid login' error message.
-                return render(request, 'login.html', {'form': form, 'error': 'Invalid username or password.'})
-    else:
-        form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
-
-def redirect_to_homepage(request):
-    return redirect('https://github.com/')
+    return render(request, 'movieRecs.html', {'films': films})
 
 
 
