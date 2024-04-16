@@ -32,18 +32,24 @@ def signUp(request):
 def login(request):
     return render(request, 'login.html')
 
+#Aaliyah and samiya
 
-# add query to add user data from form
+# add query to add user data from form 
 # add query to display/get user details of user thats logged in for profile
-# validate password
-# api queries
 # query for adding movies to databse user swipes right on and left on
+# allowing user to edit profile - query to alter/update database
 # query to fetch movies user said yes to
 # query to add friends
 # query to fetch/display users friends
+
+# rafi'ah and monica
+# recommendation queries
+
+# Xiaowei
+
 # query for log in if username and password match user in database
 # forgot password part - send email to reset
-# allowing user to edit profile - query to alter/update database
+# validate password
 
 
 
