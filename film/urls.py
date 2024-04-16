@@ -27,5 +27,5 @@ urlpatterns = [
     path("profile/", userProfile, name="userProfile"),
     path("signup/", signUp, name="signup"),
     path("login/", login, name="login")
-    path('update_preference/', views.update_movie_preference, name='update_preference')
+    path('update_preference/', update_movie_preference, name='update_preference')
 ]
