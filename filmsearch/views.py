@@ -74,8 +74,12 @@ def add_friend(request):
 
  # user friend list view
 def friendList(request):
-    items = Friends.objects.all()
-    return render(request, 'listfilm.html', {'items': items})
+    if request.user.is_authenticated:
+        current_user_id = request.user.id
+        items = Friends.objects.filter(user_id=current_user_id)
+        return render(request, 'listfilm.html', {'items': items})
+    else:
+        return HttpResponse('You must be logged in to view this page', status=401)
 
 def signup(request):
     if request.method == 'POST':
