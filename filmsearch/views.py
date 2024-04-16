@@ -77,7 +77,7 @@ def friendList(request):
     if request.user.is_authenticated:
         current_user_id = request.user.id
         items = Friends.objects.filter(user_id=current_user_id)
-        return render(request, 'listfilm.html', {'items': items})
+        return render(request, 'friends_list.html', {'items': items})
     else:
         return HttpResponse('You must be logged in to view this page', status=401)
 
