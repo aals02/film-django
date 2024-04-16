@@ -40,7 +40,8 @@ def login(request):
     return render(request, 'login.html')
 
 #Aaliyah and samiya
-# query for adding movies to databse user swipes right on and left on
+# query for adding movies to databse user swipes right on and left on 
+# guys you should save the tables where they have swiped right and left on 
 # allowing user to edit profile - query to alter/update database
 # query to fetch movies user said yes to
 # query to add friends
