@@ -16,15 +16,6 @@ from django.contrib.auth.forms import AuthenticationForm
 #  user profile view
 from .models import User
 def userProfile(request):
-    # if request.method == 'POST':
-    #     form = UserForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('') #send to profile page
-    # else:
-    #     form = UserForm()
-    # return render(request, 'profileUser.html', {'form': form})
-
      items = User.objects.all()
      return render(request, 'profileUser.html', {'items': items})
 
