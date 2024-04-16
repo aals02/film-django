@@ -69,9 +69,19 @@ class APIstore(models.Model):
     
 #     def __str__(self):
 #         return self.friend_name
+class Genre(models.Model):
+    api_genre_id = models.IntegerField(unique=True)
+    genre_name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.genre_name
+
 class Films(models.Model):
     name = models.CharField(max_length = 100)
     description = models.TextField()
+    genres = models.ManyToManyField(Genre)
+    lang = models.CharField(default = 'en', max_length= 20)
+    release_date = models.DateField(null=True, blank=True)
+    rating = models.FloatField(default = 0.0)
     poster_image = models.URLField(default='https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg')
     def __str__(self):
         return self.name
