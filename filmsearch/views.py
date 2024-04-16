@@ -93,7 +93,6 @@ def update_movie_preference(request):
             movie_id=movie_id,
             defaults={'yes_no': yes_no}
         )
-        return redirect('some-view-name')  # Redirect after POST to avoid resubmission
-#     else:
-#         return HttpResponse('Method not allowed', status=405)
+        return redirect('movie_List')  # Redirect after POST to avoid resubmission
+
 
