@@ -59,4 +59,3 @@ class Films(models.Model):
     poster_image = models.URLField(default='https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg')
     def __str__(self):
         return self.name
-
