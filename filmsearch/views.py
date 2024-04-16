@@ -114,11 +114,11 @@ def update_movie_preference(request):
 #             defaults={'yes_no': yes_no}
 #         )
 #         return redirect('movie_List')  # Redirect after POST to avoid resubmission
-def movie_preferences(request):
+def movie_preference(request):
     if request.user.is_authenticated:
         liked_movies = Moviepreference.objects.filter(user_id=request.user.id, preference=Moviepreference.LIKE)
         disliked_movies = Moviepreference.objects.filter(user_id=request.user.id, preference=Moviepreference.DISLIKE)
-        return render(request, 'movie_preferences.html', {'liked_movies': liked_movies, 'disliked_movies': disliked_movies})
+        return render(request, 'movie_preference.html', {'liked_movies': liked_movies, 'disliked_movies': disliked_movies})
     else:
         return HttpResponse('You must be logged in to view this page', status=401)
 
