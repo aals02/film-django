@@ -3,45 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        .movie-card {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .poster-image {
+            max-width: 80%;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-<h1>Movie List</h1>
-<!-- Use a for loop to iterate through the movies data -->
-<ul>
-    {% for film in films %}
-        <li>
-            <h3>{{ film.name }}</h3>
-            <br>
-            <!-- Display the poster image -->
-            <img src="{{ film.poster_image }}" alt="poster pic" style="width:400px; height:auto;">
-            <br>
-            <p>{{ film.description }}</p>
-        </li>
-        {% empty %}
-        <li>No films to display.</li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <h1 class="mt-4">Movie List</h1>
+    <div class="row" id="movieRow">
+        <!-- Use a for loop to iterate through the movies data -->
+        <div class="col-md-3"></div>
+        {% for film in films %}
+            <div class="col-md-6 movie-card">
+                <div class="card">
+                    <img src="{{ film.poster_image }}" class="card-img-top poster-image" alt="poster pic">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ film.name }}</h5>
+                        <p class="card-text">{{ film.description }}</p>
+                        <!-- Like and Dislike buttons (positions switched) -->
+                        <div class="btn-group" role="group" aria-label="Like Dislike">
+                            <button type="button" class="btn btn-danger dislike-btn">DISLIKE</button>
+                            <button type="button" class="btn btn-success like-btn">LIKE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-6">
+                <p>No films to display.</p>
+            </div>
+        {% endfor %}
+        <div class="col-md-3"></div>
+    </div>
 
-<!-- Pagination links -->
-<div class="pagination">
-    <span class="step-links">
-{#        {% if films.has_previous %}#}
-{#            <a href="?page=1">&laquo; first</a>#}
-{#            <a href="?page={{ films.previous_page_number }}">previous</a>#}
-{#        {% endif %}#}
-
-        <span class="current">
-            Page {{ films.number }} of {{ films.paginator.num_pages }}.
-        </span>
-
-        {% if films.has_next %}
-{#            CHANGE THIS INTO BUTTONS#}
-            <a href="?page={{ films.next_page_number }}">LIKE</a>
-            <a href="?page={{ films.next_page_number }}">DISLIKE</a>
-
-{#            <a href="?page={{ films.paginator.num_pages }}">last &raquo;</a>#}
-        {% endif %}
-    </span>
+    <!-- Pagination form -->
+    <form id="paginationForm" action="" method="get" style="display: none;">
+        <input type="hidden" name="page" value="{{ films.next_page_number }}">
+    </form>
 </div>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // Variables to store touch start coordinates
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    $(document).ready(function() {
+        // Swipe detection
+        $('#movieRow').on('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].clientX;
+        });
+
+        $('#movieRow').on('touchend', function(event) {
+            touchEndX = event.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        // Click event for like button
+        $('.like-btn').click(function() {
+            $('#paginationForm').attr('action', '?page={{ films.next_page_number }}').submit();
+        });
+
+        // Click event for dislike button
+        $('.dislike-btn').click(function() {
+            $('#paginationForm').attr('action', '?page={{ films.next_page_number }}').submit();
+        });
+    });
+
+    // Function to handle swipe gesture
+    function handleSwipe() {
+        // Calculate the distance swiped
+        let swipeDistance = touchEndX - touchStartX;
+        // If the swipe distance is greater than 50 pixels, navigate to the next page
+        if (Math.abs(swipeDistance) > 50) {
+            if (swipeDistance > 0) {
+                // Swipe right (like), go to the next page (if available)
+                let previousPage = parseInt('{{ films.next_page_number }}');
+                if (!isNaN(previousPage) && previousPage > 0) {
+                    window.location.href = '?page=' + previousPage;
+                }
+            } else {
+                // Swipe left (dislike), go to the next page (if available)
+                let nextPage = parseInt('{{ films.next_page_number }}');
+                if (!isNaN(nextPage) && nextPage > 0) {
+                    window.location.href = '?page=' + nextPage;
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>
+
