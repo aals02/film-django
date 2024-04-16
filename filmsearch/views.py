@@ -77,22 +77,23 @@ def movie_List(request):
     return render(request, 'movieRecs.html', {'films': films})
     #karen
 def update_movie_preference(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated:
         movie_id = request.POST.get('movie_id')
         action = request.POST.get('action')
 
-        # Map action to True or False
-        likes = True if action == 'like' else False
+        # Map action to 'Y' or 'N'
+        preference = Moviepreference.LIKE if action == 'like' else Moviepreference.DISLIKE
 
         # Update or create the preference
         Moviepreference.objects.update_or_create(
-            user=request.user,  # Assuming you are using Django's authentication system
+            user_id=request.user.id,
             movie_id=movie_id,
-            defaults={'likes': likes}
+            defaults={'preference': preference}
         )
-        return redirect('movie_List')  # Redirect after POST to avoid resubmission
+        return redirect('movie-list')  # Redirect after POST to avoid resubmission
     else:
-        return HttpResponse('Method not allowed', status=405)
+        return HttpResponse('You must be logged in to update preferences', status=401)
+
 
 # def update_movie_preference(request):
 #     if request.method == 'POST':
