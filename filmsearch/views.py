@@ -8,8 +8,26 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 
-
 # Create your views here.
+
+#aaliyah and samiya
+# query for adding movies to databse user swipes right on and left on and displaying it
+# query to add friends
+# query to fetch/display users friends
+# allowing user to edit profile - query to alter/update database
+
+# rafi'ah and monica
+# recommendation queries 
+# Add save to your function to store movies they have swiped right and left on
+# query for adding movies to databse user swipes right on and left on and displaying it - we did this just modify it little bit
+
+# Xiaowei
+# query for log in if username and password match user in database
+# forgot password part - send email to reset 
+# validate password
+# hashing passwords
+
+
 #  user profile view
 from .models import User
 def userProfile(request):
@@ -38,28 +56,6 @@ def signUp(request):
 
 def login(request):
     return render(request, 'login.html')
-
-#Aaliyah and samiya
-# query for adding movies to databse user swipes right on and left on 
-# guys you should save the tables where they have swiped right and left on 
-# allowing user to edit profile - query to alter/update database
-# query to fetch movies user said yes to
-# query to add friends
-# query to fetch/display users friends
-
-# rafi'ah and monica
-# recommendation queries
-# query for adding movies to databse user swipes right on and left on - we did this just fix it
-# guys you should save the tables where they have swiped right and left on 
-
-# Xiaowei
-
-# query for log in if username and password match user in database
-# forgot password part - send email to reset 
-# validate password
-# hashing passwords
-
-
 
 
 def movie_List(request):
