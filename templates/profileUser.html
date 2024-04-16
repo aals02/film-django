@@ -12,33 +12,26 @@
         th, td {color: black; font-size: 50px; text-align: center; padding: 8px;}
         .error {font-size: x-small; font-weight: bold;}
     </style>
-</head>              
+</head>
 <body>
     <h1>User Profile</h1>
-    <!--make table downwards rectangle instead of sideways ahahaha-->
     <table>
-        <!--need to change this loop to only output user details of user thats logged in-->
-        {% for item in items %}
-            <tr>
-                <th>Name</th>
-                <td>{{item.name}}</td>
-            </tr>
-            <tr>
-                <th>Date of Birth</th>
-                <td>{{item.dob}}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{item.username}}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{item.email}}</td>
-            </tr>
-        {% endfor %}
+        <tr>
+            <th>Name</th>
+            <td>{{ user.name }}</td>
+        </tr>
+        <tr>
+            <th>Date of Birth</th>
+            <td>{{ user.dob|date:"Y-m-d" }}</td> <!-- Format the date output -->
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ user.email }}</td>
+        </tr>
     </table>
 </body>
 </html>
-
-
-
