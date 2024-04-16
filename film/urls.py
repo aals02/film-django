@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from filmsearch.views import userProfile, movie_List, friendList, signUp, login
-
+from .views import login_view, redirect_to_homepage
+from . import views
 
 
 urlpatterns = [
@@ -27,4 +28,6 @@ urlpatterns = [
     path("profile/", userProfile, name="userProfile"),
     path("signup/", signUp, name="signup"),
     path("login/", login, name="login")
+    path('', redirect_to_homepage, name='home'),
+    # path('login/', views.login, name='login')  # you can use Django’s built-in view
 ]
