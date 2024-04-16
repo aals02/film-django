@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
 import datetime
+#karen
+from django.conf import settings
 
 # user profile database
 class User(models.Model):
@@ -24,16 +26,28 @@ class Friends(models.Model):
         return self.friend_name
 
 # movie preferences
+# class Moviepreference(models.Model):
+#     Yes = 'Y'
+#     No = 'N'
+#     MOVIE_CHOICES = (
+#         (Yes,'Yes'),
+#         (No,'No'),
+#     )
+#     movie_id = models.CharField(max_length=100, blank = False, null = False)
+#     user_id = models.CharField(max_length=100, blank = False, null = False)
+#     yes_no = models.CharField(max_length=3, choices=MOVIE_CHOICES,default=Yes)
+
 class Moviepreference(models.Model):
-    Yes = 'Y'
-    No = 'N'
-    MOVIE_CHOICES = (
-        (Yes,'Yes'),
-        (No,'No'),
-    )
-    movie_id = models.CharField(max_length=100, blank = False, null = False)
-    user_id = models.CharField(max_length=100, blank = False, null = False)
-    yes_no = models.CharField(max_length=3, choices=MOVIE_CHOICES,default=Yes)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    movie_id = models.CharField(max_length=100)
+    likes = models.BooleanField(default=True)  # True if like, False if dislike
+
+    class Meta:
+        unique_together = ('user', 'movie_id')  # Ensuring one preference per user per movie
+
+    def __str__(self):
+        return f"{self.user.username} - {'likes' if self.likes else 'dislikes'} {self.movie_id}"
+
 
     def __str__(self):
         return self.movie_id
