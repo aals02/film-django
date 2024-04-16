@@ -26,5 +26,5 @@ urlpatterns = [
     path('movies/', movie_List, name='movie-list'),
     path("signup/", signUp, name="signup"),
     path("login/", login, name="login")
-    path("preferences/", update_movie_preference, name='movie-preferences'),
+    path("preferences/", movie_preference, name='movie-preferences'),
 ]
