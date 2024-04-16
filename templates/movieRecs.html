@@ -16,11 +16,35 @@
             display: block;
             margin: 0 auto;
         }
+        .movie-details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dimmed background effect */
+            color: white;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .movie-card:hover img {
+            transform: scale(1.1);
+            filter: blur(8px);
+        }
+        .movie-card:hover .movie-details {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-4">Movie List</h1>
+    <h1 class="mt-4">Movies</h1>
     <div class="row" id="movieRow">
         <!-- Use a for loop to iterate through the movies data -->
         <div class="col-md-3"></div>
@@ -28,13 +52,19 @@
             <div class="col-md-6 movie-card">
                 <div class="card">
                     <img src="{{ film.poster_image }}" class="card-img-top poster-image" alt="poster pic">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ film.name }}</h5>
-                        <p class="card-text">{{ film.description }}</p>
-                        <p class="card-text">{{ film.genres}}</p>
-                        <p class="card-text">{{ film.lang}}</p>
-                        <p class="card-text">{{ film.release_date}}</p>
-                        <p class="card-text">{{ film.rating}}</p>
+                    <div class="movie-details">
+                        <h4><strong class="card-title">{{ film.name }}</strong></h4>
+                        <p class="card-text">Description: {{ film.description }}</p>
+                        <p class="card-text">Genre(s):
+                            {% for genre in film.genres.all %}
+                                {{ genre.genre_name }}{% if not forloop.last %}, {% endif %}
+                                {% empty %}
+                                No genres listed.
+                            {% endfor %}
+                        </p>
+                        <p class="card-text">Language: {{ film.lang }}</p>
+                        <p class="card-text">Release Date: {{ film.release_date }}</p>
+                        <p class="card-text">Rating: {{ film.rating }}</p>
                         <!-- Like and Dislike buttons (positions switched) -->
                         <div class="btn-group" role="group" aria-label="Like Dislike">
                             <button type="button" class="btn btn-danger dislike-btn">DISLIKE</button>
