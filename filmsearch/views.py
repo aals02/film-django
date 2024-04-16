@@ -50,6 +50,28 @@ def userProfile(request):
      items = User.objects.all()
      return render(request, 'profileUser.html', {'items': items})
 
+def add_friend(request):
+    if request.method == 'POST':
+        current_user_id = request.user.id
+        friend_username = request.POST.get('friend_username')
+        try:
+            friend = User.objects.get(username=friend_username)
+            
+            if not Friends.objects.filter(user_id=current_user_id, friend_id=friend.id).exists():
+                Friends.objects.create(
+                    friend_name=friend.name,
+                    friend_username=friend.username,
+                    user_id=current_user_id,
+                    friend_id=friend.id
+                )
+                message = "Friend added successfully!"
+            else:
+                message = "Friend already exists!"
+        except User.DoesNotExist:
+            message = "User not found!"
+
+        return HttpResponseRedirect('/friends/', {'message': message})
+
  # user friend list view
 def friendList(request):
     items = Friends.objects.all()
