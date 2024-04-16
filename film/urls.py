@@ -29,5 +29,6 @@ urlpatterns = [
     path("signup/", signUp, name="signup"),
     path("login/", login, name="login")
     path('', redirect_to_homepage, name='home'),
+    path('accounts/', include('accounts.urls'))
     # path('login/', views.login, name='login')  # you can use Django’s built-in view
 ]
