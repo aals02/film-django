@@ -14,7 +14,7 @@ from django.http import HttpResponse
 # query for adding movies to databse user swipes right on and left on and displaying it
 # query to add friends
 # query to fetch/display users friends
-# allowing user to edit profile - query to alter/update database
+
 
 # rafi'ah and monica
 # recommendation queries 
@@ -23,6 +23,7 @@ from django.http import HttpResponse
 
 # Xiaowei
 # query for log in if username and password match user in database
+# allowing user to edit profile - query to alter/update database
 # forgot password part - send email to reset 
 # validate password
 # hashing passwords
