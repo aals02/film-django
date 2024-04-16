@@ -49,6 +49,8 @@ def login(request):
 
 # rafi'ah and monica
 # recommendation queries
+# query for adding movies to databse user swipes right on and left on - we did this just fix it
+# guys you should save the tables where they have swiped right and left on 
 
 # Xiaowei
 
