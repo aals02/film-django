@@ -66,8 +66,6 @@ class APIstore(models.Model):
 
 
 
-
-
     
 #     def __str__(self):
 #         return self.friend_name
