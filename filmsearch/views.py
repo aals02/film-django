@@ -5,6 +5,9 @@ from .models import Films
 from .models import User, Friends, Moviepreference, APIstore
 
 
+def home(request):
+    return render(request, "filmsearch/index.html")
+
 # Create your views here.
 #  user profile view
 from .models import User
