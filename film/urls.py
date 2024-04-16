@@ -24,8 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("profile/", userProfile, name="userProfile"),
     path('movies/', movie_List, name='movie-list'),
-    path("profile/", userProfile, name="userProfile"),
     path("signup/", signUp, name="signup"),
     path("login/", login, name="login")
-    path('update_preference/', update_movie_preference, name='update_preference')
+    path("update-movie-preference/", update_movie_preference, name='update_movie_preference'),
 ]
