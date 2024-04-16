@@ -64,13 +64,13 @@ def add_friend(request):
                     user_id=current_user_id,
                     friend_id=friend.id
                 )
-                message = "Friend added successfully!"
+                return redirect('friend_list')
             else:
-                message = "Friend already exists!"
+                return HttpResponse('Friendship already exists!', status=409)
         except User.DoesNotExist:
-            message = "User not found!"
-
-        return HttpResponseRedirect('/friends/', {'message': message})
+            return HttpResponse('User not found!', status=404)
+    else:
+        return render(request, 'friendAdd.html')
 
  # user friend list view
 def friendList(request):
