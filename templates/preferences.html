@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Preferences</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        h1, h2 {
+            color: navy;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 8px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+        }
+        .column {
+            float: left;
+            width: 50%;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Movie Preferences</h1>
+    <div class="row">
+        <div class="column">
+            <h2>Liked Movies</h2>
+            {% if liked_movies %}
+                <ul>
+                {% for movie in liked_movies %}
+                    <li>{{ movie.movie_id }}</li> <!-- Replace movie.movie_id with more detailed information if available -->
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No liked movies yet.</p>
+            {% endif %}
+        </div>
+        <div class="column">
+            <h2>Disliked Movies</h2>
+            {% if disliked_movies %}
+                <ul>
+                {% for movie in disliked_movies %}
+                    <li>{{ movie.movie_id }}</li> <!-- As above, show more details if possible -->
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No disliked movies yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
