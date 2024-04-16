@@ -1,10 +1,6 @@
 from django import forms
 from .models import User
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
-from django.contrib.auth.models import User
-
-User = get_user_model()
+from logging import PlaceHolder
 
 class UserForm(forms.ModelForm):
     # name = forms.CharField(widget=forms.TextInput(attrs={
