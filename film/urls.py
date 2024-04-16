@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from filmsearch.views import userProfile, movie_List, friendList, signup, login_view, movie_preference, redirect_to_homepage
+from filmsearch.views import userProfile, movie_List, friendList, signup, login_view, movie_preference, redirect_to_homepage, add_friend
 
 
 urlpatterns = [
@@ -24,6 +24,7 @@ urlpatterns = [
     #path('accounts/', include('accounts.urls')),
     path("profile/", userProfile, name="userProfile"),
     path('movies/', movie_List, name='movie-list'),
+    path('add_friend/', add_friend, name='add_friend'),
     path("signup/", signup, name="signup"),
     path("login/", login_view, name="login"),
     path("preferences/", movie_preference, name='movie-preferences'),
