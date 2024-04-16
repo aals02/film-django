@@ -38,15 +38,19 @@ class Friends(models.Model):
 #     yes_no = models.CharField(max_length=3, choices=MOVIE_CHOICES,default=Yes)
 
 class Moviepreference(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    movie_id = models.CharField(max_length=100)
-    likes = models.BooleanField(default=True)  # True if like, False if dislike
-
-    class Meta:
-        unique_together = ('user', 'movie_id')  # Ensuring one preference per user per movie
+    LIKE = 'Y'
+    DISLIKE = 'N'
+    MOVIE_CHOICES = (
+        (LIKE, 'Yes'),
+        (DISLIKE, 'No'),
+    )
+    movie_id = models.CharField(max_length=100, blank=False, null=False)
+    user_id = models.CharField(max_length=100, blank=False, null=False)
+    preference = models.CharField(max_length=3, choices=MOVIE_CHOICES, default=LIKE)
 
     def __str__(self):
-        return f"{self.user.username} - {'likes' if self.likes else 'dislikes'} {self.movie_id}"
+        return f"{self.user_id} - {self.movie_id} - {self.preference}"
+
 
 
     def __str__(self):
