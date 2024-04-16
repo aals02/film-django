@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from filmsearch.views import userProfile, movie_List, friendList, signUp, login
+from filmsearch.views import userProfile, movie_List, friendList, signUp, login, update_movie_preference
 
 
 
