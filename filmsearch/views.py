@@ -32,7 +32,7 @@ def friendList(request):
     return render(request, 'listfilm.html', {'items': items})
 
 def signUp(request):
-    return render(request, 'singup.html')
+    return render(request, 'signup.html')
 
 def login(request):
     return render(request, 'login.html')
