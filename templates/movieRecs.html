@@ -65,7 +65,6 @@
                         <p class="card-text">Language: {{ film.lang }}</p>
                         <p class="card-text">Release Date: {{ film.release_date }}</p>
                         <p class="card-text">Rating: {{ film.rating }}</p>
-                        <!-- Like and Dislike buttons (positions switched) -->
                         <div class="btn-group" role="group" aria-label="Like Dislike">
                             <button type="button" class="btn btn-danger dislike-btn">DISLIKE</button>
                             <button type="button" class="btn btn-success like-btn">LIKE</button>
@@ -84,6 +83,7 @@
     <!-- Pagination form -->
     <form id="paginationForm" action="" method="get" style="display: none;">
         <input type="hidden" name="page" value="{{ films.next_page_number }}">
+        <input type="hidden" id="islike" name="like" value="">
     </form>
 </div>
 
@@ -109,12 +109,14 @@
 
         // Click event for like button
         $('.like-btn').click(function() {
-            $('#paginationForm').attr('action', '?page={{ films.next_page_number }}').submit();
+            document.getElementById("islike").value = "true";
+            $('#paginationForm').attr('action', '?page={{ films.next_page_number }}&like=true').submit();
         });
 
         // Click event for dislike button
         $('.dislike-btn').click(function() {
-            $('#paginationForm').attr('action', '?page={{ films.next_page_number }}').submit();
+            document.getElementById("islike").value = "false";
+            $('#paginationForm').attr('action', '?page={{ films.next_page_number }}&like=false').submit();
         });
     });
 
@@ -130,12 +132,14 @@
                 if (!isNaN(previousPage) && previousPage > 0) {
                     window.location.href = '?page=' + previousPage;
                 }
+                // store the like prefernece
             } else {
                 // Swipe left (dislike), go to the next page (if available)
                 let nextPage = parseInt('{{ films.next_page_number }}');
                 if (!isNaN(nextPage) && nextPage > 0) {
                     window.location.href = '?page=' + nextPage;
                 }
+
             }
         }
     }

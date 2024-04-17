@@ -56,7 +56,7 @@ class Films(models.Model):
     def __str__(self):
         return self.name
 
-class Moviepreference(models.Model):
+class MoviePreference(models.Model):
     movie_id = models.CharField(max_length=100, blank=False, null=False)
     user_id = models.CharField(max_length=100, blank=False, null=False)
     like = models.BooleanField(default=True)
