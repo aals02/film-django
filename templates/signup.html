@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Item List</title>
-
-        <!--put this in stylesheet-->
-        <!--defo needs changing tho lol-->
-        <style>
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
           body {
-            text-align: center;
             font-size: large;
             background-color: black;
             font-family: Sans-Serif, Helvetica;
             color: white;
           }
-          h1 {
+          h1, h2 {
             margin: auto;
-            padding: 25px;
+            padding: 45px;
             font-size: xxx-large;
+            text-align: center;
           }
           .error {
             font-size: x-small;
             font-weight: bold;
+            text-align: left;
+            padding-left: 20%;
           }
-          .signUpForm {
-            min-height: 100%;
+          .logInForm {
             display: flex;
             flex-direction: column;
             row-gap: 1rem;
-            text-align: center;
+            text-align: left; 
             background-color: #111111;
-            width: 60%;
+            width: 50%; 
             margin: auto;
-            padding: 1rem;
+            padding: 20px; 
             border-radius: 25px;
             box-shadow: 5px 5px #222222;
           }
-          .signUpInput {
-            width: 60%;
+          .loginInput {
+            width: 80%; 
             margin: auto;
             padding: 5px;
             border-radius: 10px;
           }
+          .textRight {
+            padding-left: 20%;
+          }
           .submitButton {
-            width: 40%;
+            width: 60%; 
             margin-left: auto;
             margin-right: auto;
             margin-top: 1%;
@@ -55,6 +55,7 @@
             border: none;
             color: white;
             font-size: large;
+            text-align: center; 
           }
           .submitButton:hover {
             filter: brightness(110%);
@@ -65,41 +66,15 @@
             cursor: pointer;
           }
         </style>
-    </head>
-    <body>
-        <h1>Create Account</h1>
-        <form method="POST" action="/signup">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div class="signUpForm">
-                <label for="username">Username</label>
-                <input
-                  class="signUpInput"
-                  type="text"
-                  minlength="6"
-                  maxlength="100"
-                  id="username"
-                  name="username"
-                />
-
-                <label for="email">Email</label>
-                <input class="signUpInput" type="email" id="email" name="email" />
-
-                <label for="dob">Date of Birth</label>
-                <input class="signUpInput" type="date" id="dob" name="dob" />
-
-                <label for="password">Password</label>
-                <input
-                  class="signUpInput"
-                  type="password"
-                  minlength="8"
-                  maxlength="100"
-                  id="password"
-                  name="password"
-                />
-
-                <button class="submitButton" name="submit">Sign Up</button>
-            </div>
-        </form>
-    </body>
+</head>
+<body>
+    <h2>Sign Up</h2>
+    <form class="logInForm" method="post">
+        {% csrf_token %}
+        <div class="textRight">
+          {{ form.as_p }}
+        </div>
+        <button class="submitButton" name="submit">Sign up</button>
+    </form>
+</body>
 </html>
