@@ -123,18 +123,6 @@ def login_view(request):
 def redirect_to_homepage(request):
     return redirect('movie-list')
 
-class CustomPasswordResetView(PasswordResetView):
-    form_class = PasswordResetRequestForm
-    template_name = 'registration/password_reset_form.html'
-    email_template_name = 'registration/password_reset_email.html'
-    subject_template_name = 'registration/password_reset_subject.txt'
-    success_url = reverse_lazy('password_reset_done')
-
-    def form_valid(self, form):
-        email = form.cleaned_data['email']
-        self.extra_email_context = {'email': email}
-        return super().form_valid(form)
-
 
 def movie_List(request):
     films = Films.objects.all()
