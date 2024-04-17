@@ -87,7 +87,7 @@
             {% if error %}
                 <p style="color: red;">{{ error }}</p>
             {% endif %}
-            <button class="submitButton" name="submit">Login</button>
+            <button class="submitButton" name="submit">Login</button><br>
             <a href="{% url 'signup' %}">Register</a><br>
             <a href="{% url 'password_reset' %}">Forget Password?</a>
         </form>
