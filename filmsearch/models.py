@@ -25,36 +25,6 @@ class Friends(models.Model):
     def __str__(self):
         return self.friend_name
 
-# movie preferences
-# class Moviepreference(models.Model):
-#     Yes = 'Y'
-#     No = 'N'
-#     MOVIE_CHOICES = (
-#         (Yes,'Yes'),
-#         (No,'No'),
-#     )
-#     movie_id = models.CharField(max_length=100, blank = False, null = False)
-#     user_id = models.CharField(max_length=100, blank = False, null = False)
-#     yes_no = models.CharField(max_length=3, choices=MOVIE_CHOICES,default=Yes)
-
-class Moviepreference(models.Model):
-    LIKE = 'Y'
-    DISLIKE = 'N'
-    MOVIE_CHOICES = (
-        (LIKE, 'Yes'),
-        (DISLIKE, 'No'),
-    )
-    movie_id = models.CharField(max_length=100, blank=False, null=False)
-    user_id = models.CharField(max_length=100, blank=False, null=False)
-    preference = models.CharField(max_length=3, choices=MOVIE_CHOICES, default=LIKE)
-
-    def __str__(self):
-        return f"{self.user_id} - {self.movie_id} - {self.preference}"
-
-
-
-    def __str__(self):
-        return self.movie_id
 
 # storing API
 class APIstore(models.Model):
@@ -85,3 +55,15 @@ class Films(models.Model):
     poster_image = models.URLField(default='https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg')
     def __str__(self):
         return self.name
+
+class Moviepreference(models.Model):
+    movie_id = models.CharField(max_length=100, blank=False, null=False)
+    user_id = models.CharField(max_length=100, blank=False, null=False)
+    like = models.BooleanField(default=True)
+
+    def __str__(self):
+        if self.like:
+            preference = "like"
+        else:
+            preference = "dislike"
+        return f"{self.user_id} - {self.movie_id} - {preference}"
