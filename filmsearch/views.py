@@ -4,10 +4,14 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 # from .forms import UserForm
 from .forms import SignUpForm
-from .models import Films
-from .models import User, Friends, Moviepreference, APIstore
+from .models import Films, User, Friends, Moviepreference, APIstore
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from .forms import PasswordResetRequestForm
 
 
 # Create your views here.
@@ -87,6 +91,13 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+
+            subject = 'Welcome to Our Site!'
+            message = f'Hi {user.username}, thanks for registering at our site!'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email]
+            send_mail(subject, message, email_from, recipient_list)
+
             return redirect('home')
     else:
         form = SignUpForm()
@@ -111,6 +122,19 @@ def login_view(request):
 
 def redirect_to_homepage(request):
     return redirect('movie-list')
+
+class CustomPasswordResetView(PasswordResetView):
+    form_class = PasswordResetRequestForm
+    template_name = 'registration/password_reset_form.html'
+    email_template_name = 'registration/password_reset_email.html'
+    subject_template_name = 'registration/password_reset_subject.txt'
+    success_url = reverse_lazy('password_reset_done')
+
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        self.extra_email_context = {'email': email}
+        return super().form_valid(form)
+
 
 def movie_List(request):
     films = Films.objects.all()
