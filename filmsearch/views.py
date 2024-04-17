@@ -132,14 +132,14 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 def redirect_to_homepage(request):
-    return redirect('movies')
+    return redirect('movie-list')
 
 
 def movie_List(request):
     if not request.user:
         return redirect('login')
     user_preferences = MoviePreference.objects.filter(user_id=request.user.id)
-    films = Films.objects.filter(~Q(pk__in=Subquery(user_preferences.values('movie_id')))).order_by('pk')
+    films = Films.objects.filter(~Q(pk__in=Subquery(user_preferences.values('movie_id'))))
     if not films:
         return redirect('recommendations')
     #films = Films.objects.all()
@@ -155,20 +155,23 @@ def movie_List(request):
 
         if islike.lower() == 'true':
             print(f"He liked the movie {movie.name}")
-            MoviePreference.objects.create(
+            movie_pref = MoviePreference.objects.create(
                 movie_id = movie.id,
                 user_id = user_id,
                 like = True
             )
-
+            print("Hello")
         else:
+            print("Hello else")
             print(f"He disliked the movie {movie.name}")
-            MoviePreference.objects.create(
+            movie_pref = MoviePreference.objects.create(
                 movie_id = movie.id,
                 user_id = user_id,
                 like = False
             )
-
+        movie_pref.save()
+        if len(films) == 1:
+            return redirect('recommendations')
     try:
         films = paginator.page(page)
     except PageNotAnInteger:
@@ -177,9 +180,9 @@ def movie_List(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         films = paginator.page(paginator.num_pages)
-
-    return render(request, 'movieRecs.html', {'films': films})
-    #aalz is karen 
+    next_page = films.next_page_number() if films.has_next() else films.number + 1
+    return render(request, 'movieRecs.html', {'films': films, 'next_page' : next_page})
+     
 def save_preference(request):
     if request.method == 'POST' and request.user.is_authenticated:
         movie_id = request.POST.get('movie_id')

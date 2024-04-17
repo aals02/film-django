@@ -44,6 +44,7 @@
 </head>
 <body>
 <div class="container">
+    <h1 class="mt-4">Hello {{ user.username }}</h1>
     <h1 class="mt-4">Movies</h1>
     <div class="row" id="movieRow">
         <!-- Use a for loop to iterate through the movies data -->
@@ -82,7 +83,7 @@
 
     <!-- Pagination form -->
     <form id="paginationForm" action="" method="get" style="display: none;">
-        <input type="hidden" name="page" value="{{ films.next_page_number }}">
+        <input type="hidden" name="page" value="{{ next_page }}">
         <input type="hidden" id="islike" name="like" value="">
     </form>
 </div>
@@ -110,13 +111,13 @@
         // Click event for like button
         $('.like-btn').click(function() {
             document.getElementById("islike").value = "true";
-            $('#paginationForm').attr('action', '?page={{ films.next_page_number }}&like=true').submit();
+            $('#paginationForm').attr('action', '?page={{ next_page }}&like=true').submit();
         });
 
         // Click event for dislike button
         $('.dislike-btn').click(function() {
             document.getElementById("islike").value = "false";
-            $('#paginationForm').attr('action', '?page={{ films.next_page_number }}&like=false').submit();
+            $('#paginationForm').attr('action', '?page={{ next_page }}&like=false').submit();
         });
     });
 
@@ -128,14 +129,14 @@
         if (Math.abs(swipeDistance) > 50) {
             if (swipeDistance > 0) {
                 // Swipe right (like), go to the next page (if available)
-                let previousPage = parseInt('{{ films.next_page_number }}');
+                let previousPage = parseInt('{{ next_page }}');
                 if (!isNaN(previousPage) && previousPage > 0) {
                     window.location.href = '?page=' + previousPage;
                 }
                 // store the like prefernece
             } else {
                 // Swipe left (dislike), go to the next page (if available)
-                let nextPage = parseInt('{{ films.next_page_number }}');
+                let nextPage = parseInt('{{ next_page }}');
                 if (!isNaN(nextPage) && nextPage > 0) {
                     window.location.href = '?page=' + nextPage;
                 }
