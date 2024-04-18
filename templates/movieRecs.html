@@ -148,17 +148,17 @@
         if (Math.abs(swipeDistance) > 50) {
             if (swipeDistance > 0) {
                 // Swipe right (like), go to the next page (if available)
-                let previousPage = parseInt('{{ next_page }}');
-                if (!isNaN(previousPage) && previousPage > 0) {
-                    window.location.href = '?page=' + previousPage;
-                }
-                // store the like prefernece
+                //let nextPage = parseInt('{{ next_page }}');
+                //if (!isNaN(nextPage) && nextPage > 0) {
+                    window.location.href = '?page={{ next_page }}&like=true&movie_id={{movie.id}}';
+                //}
+                // store the like preference
             } else {
                 // Swipe left (dislike), go to the next page (if available)
-                let nextPage = parseInt('{{ next_page }}');
-                if (!isNaN(nextPage) && nextPage > 0) {
-                    window.location.href = '?page=' + nextPage;
-                }
+                //let nextPage = parseInt('{{ next_page }}');
+                //if (!isNaN(nextPage) && nextPage > 0) {
+                    window.location.href = '?page={{ next_page }}&like=false&movie_id={{movie.id}}';
+                //}
 
             }
         }
