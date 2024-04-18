@@ -4,8 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Friends List</title>
+    <style>
+        body {
+          background-color: #373737;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+          color: aliceblue;
+        }
+
+        li {
+          display: inline-block;
+          margin: 1rem 2rem 1rem 2rem;
+          font-size: large;
+        }
+
+        ul {
+          background-color: #4b4b4b;
+          color: aliceblue;
+        }
+        a {
+          color: aliceblue;
+          text-decoration: none;
+        }
+        #currentPage {
+          color: #747474;
+        }
+    </style>
 </head>
 <body>
+<ul>
+    <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
+    <li><a href="http://127.0.0.1:8000/movies/">Movies</a></li>
+    <li><a id="currentPage">Friends</a></li>
+    <li><a>Account</a></li>
+</ul>
     <div class="container">
         <h1 class="mt-5 mb-4">Friends</h1>
         {% if items %}
