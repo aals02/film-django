@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from filmsearch.views import userProfile, movie_List, friendList, signup, login_view, movie_preference, redirect_to_homepage, add_friend, recommended_movies
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('friends/', friendList, name='friend_list'),
     path("signup/", signup, name="signup"),
     path("login/", login_view, name="login"),
+    path('logout/', LogoutView.as_view(next_page='login/'), name='logout'),
     path("preferences/", movie_preference, name='movie-preferences'),
     path('', redirect_to_homepage, name='home'),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
