@@ -27,9 +27,9 @@ from django.db.models import Sum, Case, Value, IntegerField, When, Subquery, Q
 # rafi'ah and monica
 # DONE - collect genre data from API including ID and genre name and saved to database
 # DONE - collect data (Movie info) from API and save to database for user viewing
-# DOING - recommendation queries ->
-#          (DONE) Dont show new movies that have alr been viewed
-#           Show movies that have similar genre_ids 
+# DONE - recommendation queries ->
+#          Dont show new movies that have alr been viewed
+#          Show movies that have similar genre_ids
 # DONE - store movies they have swiped right and left on - movie preferences
 # DONE - query for adding movies to database
 # DONE - Page for user swipes right on and left on and displaying it
@@ -124,8 +124,8 @@ def redirect_to_homepage(request):
 
 
 def movie_List(request):
-    if not request.user:
-        return redirect('login')
+    if not request.user.is_authenticated:
+        return redirect('home')
     page = request.GET.get('page') or 1
     islike = request.GET.get('like')
 
@@ -250,4 +250,6 @@ class CustomPasswordResetView(PasswordResetView):
         self.extra_email_context = {'email': email}
         return super().form_valid(form)
 
+def home(request):
+    return render(request, 'home.html')
 
