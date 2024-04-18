@@ -85,6 +85,7 @@
     <form id="paginationForm" action="" method="get" style="display: none;">
         <input type="hidden" name="page" value="{{ next_page }}">
         <input type="hidden" id="islike" name="like" value="">
+        <input type="hidden" id="movie_id" name="movie_id" value="{{movie.id}}">
     </form>
 </div>
 
@@ -111,13 +112,13 @@
         // Click event for like button
         $('.like-btn').click(function() {
             document.getElementById("islike").value = "true";
-            $('#paginationForm').attr('action', '?page={{ next_page }}&like=true').submit();
+            $('#paginationForm').attr('action', '?page={{ next_page }}&like=true&movie_id={{movie.id}}').submit();
         });
 
         // Click event for dislike button
         $('.dislike-btn').click(function() {
             document.getElementById("islike").value = "false";
-            $('#paginationForm').attr('action', '?page={{ next_page }}&like=false').submit();
+            $('#paginationForm').attr('action', '?page={{ next_page }}&like=false&movie_id={{movie.id}}').submit();
         });
     });
 

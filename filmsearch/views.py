@@ -138,50 +138,50 @@ def redirect_to_homepage(request):
 def movie_List(request):
     if not request.user:
         return redirect('login')
-    user_preferences = MoviePreference.objects.filter(user_id=request.user.id)
-    films = Films.objects.filter(~Q(pk__in=Subquery(user_preferences.values('movie_id'))))
-    if not films:
-        return redirect('recommendations')
-    #films = Films.objects.all()
-
-    # Pagination
-    paginator = Paginator(films, 1)  # 1 film per page
-    page = request.GET.get('page')
+    page = request.GET.get('page') or 1
     islike = request.GET.get('like')
-    if islike is not None:
-        films = paginator.page(int(page) - 1)
-        user_id = request.user.id
-        movie = films.object_list[0]
 
+    if islike is not None:
+        user_id = request.user.id
+        movie_id = request.GET.get('movie_id')
         if islike.lower() == 'true':
-            print(f"He liked the movie {movie.name}")
             movie_pref = MoviePreference.objects.create(
-                movie_id = movie.id,
+                movie_id = movie_id,
                 user_id = user_id,
                 like = True
             )
             print("Hello")
         else:
             print("Hello else")
-            print(f"He disliked the movie {movie.name}")
             movie_pref = MoviePreference.objects.create(
-                movie_id = movie.id,
+                movie_id = movie_id,
                 user_id = user_id,
                 like = False
             )
         movie_pref.save()
-        if len(films) == 1:
-            return redirect('recommendations')
+    user_preferences = MoviePreference.objects.filter(user_id=request.user.id)
+    films = Films.objects.filter(~Q(pk__in=Subquery(user_preferences.values('movie_id')))).order_by('id')#.filter(movie_id = page)
+    if not films:
+        return redirect('recommendations')
+    #films = Films.objects.all()
+
+    # Pagination
+    paginator = Paginator(films, 1)  # 1 film per page
+
+        #if not films.has_next():
+            #return redirect('recommendations')
+
     try:
-        films = paginator.page(page)
+        films = paginator.page(int(page))
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
         films = paginator.page(1)
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         films = paginator.page(paginator.num_pages)
+
     next_page = films.next_page_number() if films.has_next() else films.number + 1
-    return render(request, 'movieRecs.html', {'films': films, 'next_page' : next_page})
+    return render(request, 'movieRecs.html', {'films': films, 'next_page' : next_page, 'movie' : films.object_list[0]})
      
 def save_preference(request):
     if request.method == 'POST' and request.user.is_authenticated:
