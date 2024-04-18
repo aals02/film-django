@@ -48,9 +48,8 @@ from django.db.models import Sum, Case, Value, IntegerField, When, Subquery, Q
 # Add Friends Page
 
 #  user profile view
-from .models import User
 def userProfile(request):
-     items = User.objects.all()
+     items = UserForm.objects.all()
      return render(request, 'profileUser.html', {'items': items})
 
 def add_friend(request):
