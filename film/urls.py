@@ -29,7 +29,7 @@ urlpatterns = [
     path('friends/', friendList, name='friend_list'),
     path("signup/", signup, name="signup"),
     path("login/", login_view, name="login"),
-    path('logout/', LogoutView.as_view(next_page='login/'), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path("preferences/", movie_preference, name='movie-preferences'),
     path('', redirect_to_homepage, name='home'),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
