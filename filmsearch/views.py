@@ -49,8 +49,10 @@ from django.db.models import Sum, Case, Value, IntegerField, When, Subquery, Q
 
 #  user profile view
 def userProfile(request):
-     items = User.objects.all()
-     return render(request, 'profileUser.html', {'items': items})
+     # items = User.objects.all()
+     # return render(request, 'profileUser.html', {'items': items})
+     user = request.user
+     return render(request, 'profileUser.html', {'user': user})
 
 def add_friend(request):
     if request.method == 'POST':
