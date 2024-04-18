@@ -2,12 +2,12 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User
-from logging import PlaceHolder
-from django.contrib.auth.models import User
+# from logging import PlaceHolder
+# from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-User = get_user_model()
-print(type(User))
+# User = get_user_model()
+
 class UserForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
