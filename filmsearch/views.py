@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from .forms import UserForm
+# from .forms import UserForm
 from .forms import SignUpForm
 from .models import Films, User, Friends, MoviePreference, APIstore
 from django.contrib.auth.decorators import login_required
@@ -49,7 +49,7 @@ from django.db.models import Sum, Case, Value, IntegerField, When, Subquery, Q
 
 #  user profile view
 def userProfile(request):
-     items = UserForm.objects.all()
+     items = User.objects.all()
      return render(request, 'profileUser.html', {'items': items})
 
 def add_friend(request):
