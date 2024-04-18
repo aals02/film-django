@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
 import datetime
-#karen
 from django.conf import settings
 
 # user profile database
