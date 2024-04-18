@@ -49,10 +49,11 @@ from django.db.models import Sum, Case, Value, IntegerField, When, Subquery, Q
 
 #  user profile view
 def userProfile(request):
-     # items = User.objects.all()
-     # return render(request, 'profileUser.html', {'items': items})
-     user = request.user
-     return render(request, 'profileUser.html', {'user': user})
+    if not request.user.is_authenticated:
+         return HttpResponse('You must be logged in to view this page\nPress back to return to previous page', status=401)
+    else:
+        user = request.user
+        return render(request, 'profileUser.html', {'user': user})
 
 def add_friend(request):
     if request.method == 'POST':
@@ -82,7 +83,7 @@ def friendList(request):
         friends = User.objects.filter(Q(pk__in=Subquery(items.values('friend_id'))))
         return render(request, 'friends_list.html', {'items': friends})
     else:
-        return HttpResponse('You must be logged in to view this page', status=401)
+        return HttpResponse('You must be logged in to view this page\nPress back to return to previous page', status=401)
 
 def signup(request):
     if request.method == 'POST':
@@ -120,12 +121,12 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 def redirect_to_homepage(request):
-    return redirect('movie-list')
+    return redirect('home')
 
 
 def movie_List(request):
     if not request.user.is_authenticated:
-        return redirect('home')
+        return HttpResponse('You must be logged in to view this page\nPress back to return to previous page', status=401)
     page = request.GET.get('page') or 1
     islike = request.GET.get('like')
 
@@ -187,7 +188,7 @@ def save_preference(request):
         )
         return redirect('movie-list')  # Redirect after POST to avoid resubmission
     else:
-        return HttpResponse('You must be logged in to update preferences', status=401)
+        return HttpResponse('You must be logged in to update preferences, press back to return to previous page', status=401)
 
 
 
@@ -197,7 +198,7 @@ def movie_preference(request):
         disliked_movies = MoviePreference.objects.filter(user_id=request.user.id, preference=MoviePreference.DISLIKE)
         return render(request, 'movie_preference.html', {'liked_movies': liked_movies, 'disliked_movies': disliked_movies})
     else:
-        return HttpResponse('You must be logged in to view this page', status=401)
+        return HttpResponse('You must be logged in to view this page\nPress back to return to previous page', status=401)
 
 def get_recommended_movies(user_id):
     prefered_movies_for_user = MoviePreference.objects.filter(user_id=user_id, like=True)
