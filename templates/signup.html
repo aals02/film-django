@@ -73,6 +73,7 @@
         {% csrf_token %}
         <div class="textRight">
           {{ form.as_p }}
+        <div class="help-text">You HAVE TO be over 12 to register.</div>    
         </div>
         <button class="submitButton" name="submit">Sign up</button>
     </form>
