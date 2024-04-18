@@ -63,8 +63,6 @@ def add_friend(request):
             
             if not Friends.objects.filter(user_id=current_user_id, friend_id=friend.id).exists():
                 Friends.objects.create(
-                    friend_name=friend.name,
-                    friend_username=friend.username,
                     user_id=current_user_id,
                     friend_id=friend.id
                 )
@@ -81,7 +79,8 @@ def friendList(request):
     if request.user.is_authenticated:
         current_user_id = request.user.id
         items = Friends.objects.filter(user_id=current_user_id)
-        return render(request, 'friends_list.html', {'items': items})
+        friends = User.objects.filter(Q(pk__in=Subquery(items.values('friend_id'))))
+        return render(request, 'friends_list.html', {'items': friends})
     else:
         return HttpResponse('You must be logged in to view this page', status=401)
 
@@ -200,12 +199,12 @@ def movie_preference(request):
     else:
         return HttpResponse('You must be logged in to view this page', status=401)
 
-def recommended_movies(request):
-    prefered_movies_for_user = MoviePreference.objects.filter(user_id=request.user.id, like=True)
+def get_recommended_movies(user_id):
+    prefered_movies_for_user = MoviePreference.objects.filter(user_id=user_id, like=True)
     prefered_movies_objs = Films.objects.filter(Q(pk__in=Subquery(prefered_movies_for_user .values('movie_id'))))
     postive_counter = Counter([genre_id['api_genre_id'] for movie in prefered_movies_objs for genre_id in movie.genres.values('api_genre_id')])
     
-    prefered_movies_for_user = MoviePreference.objects.filter(user_id=request.user.id, like=False)
+    prefered_movies_for_user = MoviePreference.objects.filter(user_id=user_id, like=False)
     prefered_movies_objs = Films.objects.filter(Q(pk__in=Subquery(prefered_movies_for_user .values('movie_id'))))
     negative_counter = Counter([genre_id['api_genre_id'] for movie in prefered_movies_objs for genre_id in movie.genres.values('api_genre_id')])
     
@@ -226,8 +225,18 @@ def recommended_movies(request):
             )
         )
     ).order_by('-score')
+    return films_with_score
 
-    return render(request, 'recommendation.html', {'films': films_with_score})
+def recommended_movies(request):
+    user_id = request.user.id
+    films_with_score = get_recommended_movies(user_id)
+    return render(request, 'recommendation.html', {'films': films_with_score, "header_title" : f"Films List: Based on Your Genre Preferences"})
+
+def recommendation_friend(request):
+    friend_id = request.GET.get('friend_id')
+    friend_obj = User.objects.filter(id = friend_id).first()
+    films_with_score = get_recommended_movies(friend_id)
+    return render(request, 'recommendation.html', {'films': films_with_score, "header_title" : f"Recommendations for {friend_obj.username}"})
 
 class CustomPasswordResetView(PasswordResetView):
     form_class = PasswordResetRequestForm
@@ -240,5 +249,5 @@ class CustomPasswordResetView(PasswordResetView):
         email = form.cleaned_data['email']
         self.extra_email_context = {'email': email}
         return super().form_valid(form)
-    
+
 

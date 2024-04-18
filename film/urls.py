@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from filmsearch.views import userProfile, movie_List, friendList, signup, login_view, movie_preference, redirect_to_homepage, add_friend, recommended_movies
+from filmsearch.views import userProfile, movie_List, friendList, signup, login_view, movie_preference, redirect_to_homepage, add_friend, recommended_movies, recommendation_friend
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -34,5 +34,6 @@ urlpatterns = [
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    path('recommended_movies/', recommended_movies, name = 'recommendations')
+    path('recommended_movies/', recommended_movies, name ='recommendations'),
+    path('friend-recommendations/', recommendation_friend, name = 'friendsrecs')
 ]

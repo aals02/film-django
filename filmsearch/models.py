@@ -13,8 +13,6 @@ class User(AbstractUser):
     
 # friend list
 class Friends(models.Model):
-    friend_name = models.CharField(max_length=100, blank = False, null = False)
-    friend_username = models.CharField(max_length=100, blank = False, null = False)
     user_id = models.CharField(max_length=100, blank = False, null = False)
     friend_id = models.CharField(max_length=100, blank = False, null = False)
 
