@@ -50,18 +50,6 @@ from django.db.models import Sum, Case, Value, IntegerField, When, Subquery, Q
 #  user profile view
 from .models import User
 def userProfile(request):
-    # #def userProfile(request):
-    # # Access the logged-in user's details
-    # if request.method == 'POST':
-    #     form = UserForm(request.POST, instance=request.user)  # Pass instance to populate the form with user data
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('profile_view')  # Redirect to a named profile view
-    # else:
-    #     form = UserForm(instance=request.user)  # Initialize the form with user data for GET request
-
-    # return render(request, 'profileUser.html', {'form': form})
-
      items = User.objects.all()
      return render(request, 'profileUser.html', {'items': items})
 
