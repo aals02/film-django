@@ -152,9 +152,7 @@ def movie_List(request):
                 user_id = user_id,
                 like = True
             )
-            print("Hello")
         else:
-            print("Hello else")
             movie_pref = MoviePreference.objects.create(
                 movie_id = movie_id,
                 user_id = user_id,
@@ -162,16 +160,12 @@ def movie_List(request):
             )
         movie_pref.save()
     user_preferences = MoviePreference.objects.filter(user_id=request.user.id)
-    films = Films.objects.filter(~Q(pk__in=Subquery(user_preferences.values('movie_id')))).order_by('id')#.filter(movie_id = page)
+    films = Films.objects.filter(~Q(pk__in=Subquery(user_preferences.values('movie_id')))).order_by('id')
     if not films:
         return redirect('recommendations')
-    #films = Films.objects.all()
 
     # Pagination
     paginator = Paginator(films, 1)  # 1 film per page
-
-        #if not films.has_next():
-            #return redirect('recommendations')
 
     try:
         films = paginator.page(int(page))
@@ -190,7 +184,7 @@ def save_preference(request):
         movie_id = request.POST.get('movie_id')
         action = request.POST.get('action')
 
-        # Map action to 'Y' or 'N'
+        # Map action to Like or Dislike
         preference = MoviePreference.LIKE if action == 'like' else MoviePreference.DISLIKE
 
         # Update or create the preference

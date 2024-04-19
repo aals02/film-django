@@ -11,12 +11,7 @@ class Command(BaseCommand):
         parser.add_argument("lastpage", nargs="+", type=int, default=1)
 
     def handle(self, *args, **options):
-        print(options)
         api_films = retrieve_movies(options["firstpage"][0], options["lastpage"][0])  # This should return a list of dictionaries
-
-        # You might want to clear the Films table before repopulating it
-        # Be cautious with this as it will delete all existing entries in the Films table
-        # Films.objects.all().delete()
 
         genres = retrieve_genres()
         for genre_data in genres:
@@ -29,8 +24,6 @@ class Command(BaseCommand):
         # Create Films objects only if they don't already exist
         for film_data in api_films:
             poster_url = "https://image.tmdb.org/t/p/w500" + film_data['poster_path']
-            print("poster_path:", film_data['poster_path'])  # This will print the poster_path from the API
-            print("Poster URL:", poster_url)  # This will print the full URL
 
             film, created = Films.objects.get_or_create(
                 name=film_data['original_title'],
@@ -49,4 +42,6 @@ class Command(BaseCommand):
             for gid in genre_ids:
                 genre_name = Genre.objects.get_or_create(api_genre_id=gid)[0]
                 g_list.append(genre_name)
+
             film.genres.set(g_list)
+        print("API call successful")
