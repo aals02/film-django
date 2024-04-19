@@ -1,11 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import render, redirect
 # from .forms import UserForm
 from .forms import SignUpForm
 from .models import Films, User, Friends, MoviePreference, APIstore
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.core.mail import send_mail
 from django.conf import settings
@@ -19,34 +17,6 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
-#aaliyah and samiya
-# DONE, NEED TESTING - query to add friends
-# DONE, NEED TESTING - query to fetch/display users friends
-
-
-# rafi'ah and monica
-# DONE - collect genre data from API including ID and genre name and saved to database
-# DONE - collect data (Movie info) from API and save to database for user viewing
-# DONE - recommendation queries ->
-#          Dont show new movies that have alr been viewed
-#          Show movies that have similar genre_ids
-# DONE - store movies they have swiped right and left on - movie preferences
-# DONE - query for adding movies to database
-# DONE - Page for user swipes right on and left on and displaying it
-
-# Xiaowei
-# query for log in if username and password match user in database
-# allowing user to edit profile - query to alter/update database
-# DONE - forgot password part - send email to reset 
-# DONE - validate password
-# IDK - hashing passwords
-
-# Alex
-# Homepage
-# FIXING - Login and Signup Page
-# User Profile Page
-# Add Friends Page
 
 #  user profile view
 def userProfile(request):
@@ -62,13 +32,13 @@ def add_friend(request):
         friend_username = request.POST.get('friend_username')
         try:
             friend = User.objects.get(username=friend_username)
-            
+
             if not Friends.objects.filter(user_id=current_user_id, friend_id=friend.id).exists():
                 Friends.objects.create(
                     user_id=current_user_id,
                     friend_id=friend.id
                 )
-                return redirect('friend_list')
+                return redirect('friendList')
             else:
                 return HttpResponse('Friendship already exists!', status=409)
         except User.DoesNotExist:
@@ -76,15 +46,38 @@ def add_friend(request):
     else:
         return render(request, 'friendAdd.html')
 
- # user friend list view
 def friendList(request):
-    if request.user.is_authenticated:
-        current_user_id = request.user.id
-        items = Friends.objects.filter(user_id=current_user_id)
-        friends = User.objects.filter(Q(pk__in=Subquery(items.values('friend_id'))))
-        return render(request, 'friends_list.html', {'items': friends})
-    else:
+    # Check if the user is authenticated
+    if not request.user.is_authenticated:
         return HttpResponse('You must be logged in to view this page\nPress back to return to previous page', status=401)
+
+    # Assuming the user is authenticated from this point
+    current_user_id = request.user.id
+
+    if request.method == 'POST' and 'remove_friend' in request.POST:
+        # The remove_friend should return an HttpResponse
+        return remove_friend(request)
+    else:
+        # Fetch friends and return them in the response
+        items = Friends.objects.filter(user_id=current_user_id)
+        friends = User.objects.filter(id__in=items.values('friend_id'))
+        return render(request, 'friends_list.html', {'items': friends})
+
+def remove_friend(request):
+    # Implementation of the remove_friend view
+    current_user_id = request.user.id
+    friend_username = request.POST.get('friend_username')
+    try:
+        friend = User.objects.get(username=friend_username)
+        friendship = Friends.objects.filter(user_id=current_user_id, friend_id=friend.id)
+        if friendship.exists():
+            friendship.delete()
+            # Redirect to friend list to reflect changes
+            return redirect('friendList')
+        else:
+            return HttpResponse('Friendship does not exist!', status=404)
+    except User.DoesNotExist:
+        return HttpResponse('User not found!', status=404)
 
 def signup(request):
     if request.method == 'POST':
