@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Friend</title>
+    <style>
+        body {
+          background-color: #373737;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+          color: aliceblue;
+        }
+
+        li {
+          display: inline-block;
+          margin: 1rem 2rem 1rem 2rem;
+          font-size: large;
+        }
+
+        ul {
+          background-color: #4b4b4b;
+          color: aliceblue;
+        }
+        a {
+          color: aliceblue;
+          text-decoration: none;
+        }
+        #currentPage {
+          color: #747474;
+        }
+    </style>
 </head>
 <body>
     <div>
+        <ul>
+            <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
+            <li><a href="http://127.0.0.1:8000/movies/">Movies</a></li>
+            <li><a href="http://127.0.0.1:8000/login/">Login</a></li>
+            <li><a href="http://127.0.0.1:8000/friends/">Friends</a></li>
+            <li><a href="http://127.0.0.1:8000/profile/">Account</a></li>
+            <li>
+                <!-- Logout Functionality -->
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" style="color: black; background: none; border: none; padding: 0; cursor: pointer;">Log Out</button>
+                </form>
+            </li>
+        </ul>
         <h2>Add a Friend</h2>
         <form method="post" action="{% url 'add_friend' %}">
             {% csrf_token %}
@@ -14,7 +55,8 @@
                 <label for="friend_username">Friend's Username:</label>
                 <input type="text" id="friend_username" name="friend_username" placeholder="Enter friend's username" required>
             </div>
-            <button type="submit">Add Friend</button>
+            <br><br>
+            <a href="/friendList/"><button>Add Friend</button></a>
         </form>
     </div>
 </body>

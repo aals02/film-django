@@ -65,9 +65,25 @@
             filter: brightness(80%);
             cursor: pointer;
           }
+        li {
+          display: inline-block;
+          margin: 1rem 2rem 1rem 2rem;
+          font-size: large;
+        }
+        ul {
+          background-color: #4b4b4b;
+          color: aliceblue;
+        }
+        a {
+          color: aliceblue;
+          text-decoration: none;
+        }
         </style>
 </head>
 <body>
+<ul>
+    <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
+</ul>
     <h2>Sign Up</h2>
     <form class="logInForm" method="post">
         {% csrf_token %}

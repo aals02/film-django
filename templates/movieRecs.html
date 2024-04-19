@@ -40,27 +40,39 @@
         .movie-card:hover .movie-details {
             opacity: 1;
         }
+        li {
+          display: inline-block;
+          margin: 1rem 2rem 1rem 2rem;
+          font-size: large;
+        }
+        ul {
+          background-color: #4b4b4b;
+          color: aliceblue;
+        }
+        a {
+          color: aliceblue;
+          text-decoration: none;
+        }
+        #currentPage {
+          color: #747474;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">Movie Mate</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <form action="{% url 'logout' %}" method="post">
-                                {% csrf_token %}
-                                <button type="submit" class="nav-link btn btn-link" style="color: white; background: none; border: none; padding: 0;">Log Out</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<ul>
+    <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
+    <li><a href="http://127.0.0.1:8000/movies/">Movies</a></li>
+    <li><a href="http://127.0.0.1:8000/recommended_movies/">My Preferences</a></li>
+    <li><a href="http://127.0.0.1:8000/friends/">Friends</a></li>
+    <li><a href="http://127.0.0.1:8000/profile/">Account</a></li>
+    <li>
+        <!-- Logout Functionality -->
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" style="color: black; background: none; border: none; padding: 0; cursor: pointer;">Log Out</button>
+        </form>
+    </li>
+</ul>
 <div class="container">
     <h1 class="mt-4">Hello {{ user.username }}</h1>
     <h1 class="mt-4">Movies</h1>
@@ -68,33 +80,33 @@
         <!-- Use a for loop to iterate through the movies data -->
         <div class="col-md-3"></div>
         {% for film in films %}
-            <div class="col-md-6 movie-card">
-                <div class="card">
-                    <img src="{{ film.poster_image }}" class="card-img-top poster-image" alt="poster pic">
-                    <div class="movie-details">
-                        <h4><strong class="card-title">{{ film.name }}</strong></h4>
-                        <p class="card-text">Description: {{ film.description }}</p>
-                        <p class="card-text">Genre(s):
-                            {% for genre in film.genres.all %}
-                                {{ genre.genre_name }}{% if not forloop.last %}, {% endif %}
-                                {% empty %}
-                                No genres listed.
-                            {% endfor %}
-                        </p>
-                        <p class="card-text">Language: {{ film.lang }}</p>
-                        <p class="card-text">Release Date: {{ film.release_date }}</p>
-                        <p class="card-text">Rating: {{ film.rating }}</p>
-                        <div class="btn-group" role="group" aria-label="Like Dislike">
-                            <button type="button" class="btn btn-danger dislike-btn">DISLIKE</button>
-                            <button type="button" class="btn btn-success like-btn">LIKE</button>
-                        </div>
+        <div class="col-md-6 movie-card">
+            <div class="card">
+                <img src="{{ film.poster_image }}" class="card-img-top poster-image" alt="poster pic">
+                <div class="movie-details">
+                    <h4><strong class="card-title">{{ film.name }}</strong></h4>
+                    <p class="card-text">Description: {{ film.description }}</p>
+                    <p class="card-text">Genre(s):
+                        {% for genre in film.genres.all %}
+                        {{ genre.genre_name }}{% if not forloop.last %}, {% endif %}
+                        {% empty %}
+                        No genres listed.
+                        {% endfor %}
+                    </p>
+                    <p class="card-text">Language: {{ film.lang }}</p>
+                    <p class="card-text">Release Date: {{ film.release_date }}</p>
+                    <p class="card-text">Rating: {{ film.rating }}</p>
+                    <div class="btn-group" role="group" aria-label="Like Dislike">
+                        <button type="button" class="btn btn-danger dislike-btn">DISLIKE</button>
+                        <button type="button" class="btn btn-success like-btn">LIKE</button>
                     </div>
                 </div>
             </div>
-            {% empty %}
-            <div class="col-md-6">
-                <p>No films to display.</p>
-            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-6">
+            <p>No films to display.</p>
+        </div>
         {% endfor %}
         <div class="col-md-3"></div>
     </div>

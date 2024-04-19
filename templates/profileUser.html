@@ -41,9 +41,39 @@
         button:hover {
             background-color: darkred; /* Darker color on hover */
         }
+        li {
+          display: inline-block;
+          margin: 1rem 2rem 1rem 2rem;
+          font-size: large;
+        }
+        ul {
+          background-color: #4b4b4b;
+          color: aliceblue;
+        }
+        a {
+          color: aliceblue;
+          text-decoration: none;
+        }
+        #currentPage {
+          color: #747474;
+        }
     </style>
 </head>
 <body>
+<ul>
+    <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
+    <li><a href="http://127.0.0.1:8000/movies/">Movies</a></li>
+    <li><a href="http://127.0.0.1:8000/recommended_movies/">My Preferences</a></li>
+    <li><a href="http://127.0.0.1:8000/friends/">Friends</a></li>
+    <li><a href="http://127.0.0.1:8000/profile/">Account</a></li>
+    <li>
+        <!-- Logout Functionality -->
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" style="color: black; background: none; border: none; padding: 0; cursor: pointer;">Log Out</button>
+        </form>
+    </li>
+</ul>
     <h1>Edit Profile</h1>
     <form action="{% url 'update_profile' %}" method="post">
         {% csrf_token %}

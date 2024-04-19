@@ -35,12 +35,21 @@
 <body>
 <ul>
     <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
-    <li><a href="http://127.0.0.1:8000/movies/">Movies</a></li>
-    <li><a id="currentPage">Friends</a></li>
-    <li><a>Account</a></li>
+    <li><a href=http://127.0.0.1:8000/movies>Movies</a></li>
+    <li><a href="http://127.0.0.1:8000/login/">Login</a></li>
+    <li><a href="http://127.0.0.1:8000/friends/">Friends</a></li>
+    <li><a href="http://127.0.0.1:8000/profile/">Account</a></li>
+    <li>
+        <!-- Logout Functionality -->
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" style="color: black; background: none; border: none; padding: 0; cursor: pointer;">Log Out</button>
+        </form>
+    </li>
 </ul>
-    <div class="container">
+<div class="container">
         <h1 class="mt-5 mb-4">Friends</h1>
+        <a href="/add-friend/"><button>Add Friends</button></a>
         {% if items %}
         <ul class="list-group">
             {% for friend in items %}
@@ -49,12 +58,18 @@
                     <div>
                         <h5 class="mb-0">{{ friend.username }}</h5>
                     </div>
+                    <form action="{% url 'remove_friend' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="friend_username" value="{{ friend.username }}">
+                        <button type="submit" class="remove-friend-btn">Remove</button>
+                    </form>
                 </li>
             </a>
             {% endfor %}
         </ul>
         {% else %}
             <p class="no-friends">No friends to display.</p>
+<!--            <a href="/add-friend/"><button>Add Friends</button></a>-->
         {% endif %}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

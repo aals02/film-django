@@ -41,12 +41,20 @@
     <title>MovieMate</title>
 </head>
 <body>
-    <ul>
-        <li><a id="currentPage">Home</a></li>
-        <li><a href="http://127.0.0.1:8000/movies/">Movies</a></li>
-        <li><a href="http://127.0.0.1:8000/friends/">Friends</a></li>
-        <li><a href="http://127.0.0.1:8000/profile/">My Account</a></li>
-    </ul>
+<ul>
+    <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
+    <li><a href="http://127.0.0.1:8000/movies/">Movies</a></li>
+    <li><a href="http://127.0.0.1:8000/login/">Login</a></li>
+    <li><a href="http://127.0.0.1:8000/friends/">Friends</a></li>
+    <li><a href="http://127.0.0.1:8000/profile/">Account</a></li>
+    <li>
+        <!-- Logout Functionality -->
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" style="color: black; background: none; border: none; padding: 0; cursor: pointer;">Log Out</button>
+        </form>
+    </li>
+</ul>
     <h1>MovieMate</h1>
     <h3>Find movies to watch effortlessly with MovieMate!</h3>
     <a href="http://127.0.0.1:8000/login/"><button id="login">Login</button></a>
