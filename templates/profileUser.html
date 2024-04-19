@@ -2,37 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Item List</title>
-    <!--put this in stylesheet-->
-    <!--defo needs changing tho lol-->
-    <style> 
-        body {text-align: center; font-size: large; background-color: black; font-family: Sans-Serif, Helvetica; color: white;}
-        h1 {margin: auto; padding: 25px; font-size: xxx-large;}
-        table {background-color: white; border-collapse: collapse; border: 1px solid hotpink;; margin: auto; margin-top: 100px; box-shadow: 10px 10px 5px hotpink;}
-        th, td {color: black; font-size: 50px; text-align: center; padding: 8px;}
-        .error {font-size: x-small; font-weight: bold;}
+    <title>User Profile</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: large;
+            background-color: black;
+            font-family: Sans-Serif, Helvetica;
+            color: white;
+        }
+        h1 {
+            margin: auto;
+            padding: 25px;
+            font-size: xxx-large;
+        }
+        form {
+            margin: auto;
+            padding: 25px;
+            background-color: white;
+            border: 1px solid hotpink;
+            box-shadow: 10px 10px 5px hotpink;
+            padding: 20px;
+        }
+        label, input {
+            display: block;
+            margin: 5px auto;
+            font-size: large;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: hotpink; /* Hotpink button to match the theme */
+            color: white; /* White text on button */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners for the button */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        button:hover {
+            background-color: darkred; /* Darker color on hover */
+        }
     </style>
 </head>
 <body>
-    <h1>User Profile</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <td>{{ user.name }}</td>
-        </tr>
-        <tr>
-            <th>Date of Birth</th>
-            <td>{{ user.dob }}</td>
-        </tr>
-        <tr>
-            <th>Username</th>
-            <td>{{ user.username }}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{ user.email }}</td>
-        </tr>
-    </table>
-    <pre>{{ user }}</pre>
+    <h1>Edit Profile</h1>
+    <form action="{% url 'update_profile' %}" method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="{{ user.username }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" value="{{ user.dob|date:'Y-m-d' }}" required>
+
+        <button type="submit">Save Changes</button>
+    </form>
 </body>
 </html>
