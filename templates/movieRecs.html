@@ -7,6 +7,13 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Custom CSS */
+        body {
+          background-color: #373737;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+          color: aliceblue;
+        }
         .movie-card {
             margin-bottom: 20px;
             text-align: center;
@@ -74,8 +81,9 @@
     </li>
 </ul>
 <div class="container">
-    <h1 class="mt-4">Hello {{ user.username }}</h1>
-    <h1 class="mt-4">Movies</h1>
+    <h3 class="mt-4">Hello {{ user.username }},</h3>
+    <h6 class="mt-4">Here are some movies you may like. Hover over the image to find more information about the movie, press like or dislike or swipe on the picture to make your preference.</h6>
+    <br>
     <div class="row" id="movieRow">
         <!-- Use a for loop to iterate through the movies data -->
         <div class="col-md-3"></div>
