@@ -14,7 +14,8 @@ from django.contrib.auth.views import PasswordResetView
 from .forms import PasswordResetRequestForm
 from collections import Counter, defaultdict
 from django.db.models import Sum, Case, Value, IntegerField, When, Subquery, Q
-
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -119,6 +120,18 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+
+@login_required
+def update_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        user.username = request.POST['username']
+        user.dob = request.POST['dob']
+        user.save()
+        return redirect('home')  # Redirect to a confirmation page or back to the profile
+    else:
+        return render(request, 'profileUser.html', {'user': user})
 
 def redirect_to_homepage(request):
     return redirect('home')
