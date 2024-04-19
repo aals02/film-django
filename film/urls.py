@@ -19,7 +19,7 @@ from django.urls import path, include
 from filmsearch.views import (userProfile, signup, login_view,
                               movie_List, movie_preference, recommended_movies,
                               friendList, add_friend, recommendation_friend,
-                              redirect_to_homepage, home)
+                              redirect_to_homepage, home, update_profile)
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
 
@@ -41,5 +41,6 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('recommended_movies/', recommended_movies, name ='recommendations'),
     path('friend-recommendations/', recommendation_friend, name = 'friendsrecs'),
-    path('home/', home, name = 'home')
+    path('home/', home, name = 'home'),
+    path('update-profile/', update_profile, name='update_profile'),
 ]
