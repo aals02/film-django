@@ -3,12 +3,6 @@ Group 8: Aaliyah Gangat, Alex Goddard, Putri Monica, Rafi’ah Nadeem, Samiya Al
 
 Selecting movies for group viewing often leads to the common setback of someone having already seen the chosen film. Our system addresses this by offering a movie suggestion engine that integrates user preferences. Users create accounts, input relevant details, and add friends to form a network. To ensure data security, our system employs encryption algorithms and multiple password-protected databases. We will then perform multiple SQL queries to identify ‘matches’. Drawing inspiration from Tinder, our interface displays movies with their posters, a brief synopsis, and main cast members, users can then mark a movie as watched or ‘swipe’ to show their preference. These movies will be randomly generated using the TMDb API. When linked users indicate similar preferences, the system identifies and recommends these mutual choices. This streamlined approach aims to simplify movie selection among friends, ensuring a more cohesive and enjoyable viewing experience.
 
-This product uses the TMDB API but is not endorsed or certified by TMDB.
-
-LOGO:
-
-<img src="https://github.com/aals02/film-django/assets/54577192/75231f8f-92b8-447c-b08b-7338860f2a84" width="100" height="100">
-
 # Please follow each step carefully to ensure that the system is installed and configured correctly.
 
 # Installation:
@@ -28,3 +22,10 @@ To obtain the movies and their information from the TMDB API, after the migratio
 Once these steps are successfully completed, run the command ‘python manage.py runserver’.
 Within the terminal you will receive a URL which will lead you to the website’s homepage.
 
+#
+
+This product uses the TMDB API but is not endorsed or certified by TMDB.
+
+LOGO:
+
+<img src="https://github.com/aals02/film-django/assets/54577192/75231f8f-92b8-447c-b08b-7338860f2a84" width="100" height="100">
