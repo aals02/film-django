@@ -27,7 +27,7 @@ Within the terminal you will receive a URL which will lead you to the website’
 
 #
 
-This product uses the TMDB API but is not endorsed or certified by TMDB.
+*This product uses the TMDB API but is not endorsed or certified by TMDB.*
 
 
 <img src="https://github.com/aals02/film-django/assets/54577192/75231f8f-92b8-447c-b08b-7338860f2a84" width="100" height="100">
