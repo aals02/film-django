@@ -1,103 +1,27 @@
-# DEPLOYMENT info
+# COMP208: MovieMate
+Group 8: Aaliyah Gangat, Alex Goddard, Putri Monica, Rafi’ah Nadeem, Samiya Ali, Xiaowei Zhang
 
-LOGO INFORMATION: https://www.themoviedb.org/about/logos-attribution   
-You shall use the TMDB logo to identify your use of the TMDB APIs.
-You shall place the following notice prominently on your application: "This product uses the TMDB API but is not endorsed or certified by TMDB."
-Any use of the TMDB logo in your application shall be less prominent than the logo or mark that primarily describes the application and your use of the TMDB logo shall not imply any endorsement by TMDB.
-When attributing TMDB, the attribution must be within your application's "About" or "Credits" type section.
+Selecting movies for group viewing often leads to the common setback of someone having already seen the chosen film. Our system addresses this by offering a movie suggestion engine that integrates user preferences. Users create accounts, input relevant details, and add friends to form a network. To ensure data security, our system employs encryption algorithms and multiple password-protected databases. We will then perform multiple SQL queries to identify ‘matches’. Drawing inspiration from Tinder, our interface displays movies with their posters, a brief synopsis, and main cast members, users can then mark a movie as watched or ‘swipe’ to show their preference. These movies will be randomly generated using the TMDb API. When linked users indicate similar preferences, the system identifies and recommends these mutual choices. This streamlined approach aims to simplify movie selection among friends, ensuring a more cohesive and enjoyable viewing experience.
+This product uses the TMDB API but is not endorsed or certified by TMDB.
 
+LOGO: ![image](https://github.com/aals02/film-django/assets/54577192/75231f8f-92b8-447c-b08b-7338860f2a84)
 
+# Please follow each step carefully to ensure that the system is installed and configured correctly.
 
+# Installation:
+Python installation: As the ‘pip’ command is integral for our system’s use with Django, Python 3.4 or later needs to be used. The following link can be accessed in order to download Python for the first time: https://www.python.org/ .
+Installing Django: Enter the following command within the terminal to install Django:‘pip install Django’ in the terminal. Use “pip --version” to ensure you have pip, if not then download from https://pypi.org/project/pip/ .
 
-
-
-COMP208: MovieMate
-okay listen up who have windows cause literally it killed me
--monica
-
-python for WINDOWS 
-1. we need python
-2. for ya'll window babes check in your terminal by using "py --version" (it took me 1 hour to deal with, sooo youre welcome)
-3. and then you gotta need to install django
-4. py -m pip install django
-5. connect your git with vs code
-6. if you can't connect, then install git extensions
-7. cd desktop
-8. git clone "URL", basically the git repository url (find green button that says "code" and coppy that URL) dont use ""
-9. and then do "code film django"
-10. once you have the repository, you run it by using py manage.py runserver
-
-
-
-python for MAC
-1. pyhton needed
-2. "pyhton3 --version"
-3. pip install django
-4. connect git with vs code
-5. if you cant connect, then install git extensions
-6. git clone "URL", basically the git repository url (find green button that says "code" and coppy that URL) dont use ""
-7. and then do "code film django"
-8. once you have the repository, you run it by using python manage.py runserver
-
-
-SOOO once evrything is done
-
-you can click on the url
-
-and goes on the search tab, add -> /admin/
-username: aals
-pass: 123
-
-after adding an item on FILMS, you can check if the item is added or not by doing just that.
-
-the files after the Django film:
-
-in views, that's where we will do queries in python and in models, that's where we will make the database
-basically where we make functions for the database tables and queries
-
-whenever you make a new database or make changes to it do python manage.py makemigrations to check theres no errors then do python manage.py migrate
-
-urls.py (under the film--pycache) is where we import functions, manage.py migrations
-
-- python manage.py makemigration
-- python manage.py migrate
-- templates folder has html file
-(to migrate the tables)
- 
-we could make a new branch for API still not sure, but uhh we could ask for more explanation later
-
-python manage.py runserver to run server and get url
-
-- PUSH -> git push
-- Pulling in changes -> git pull
-- git fetch -> fetch the changes made
-- git commit ->
-- git add ->
-- git fetch -> 
-- git status -> 
-
-only these files should be modified: urls.py, admin.py, views.py, forms.py, models.py and the files in the templates folder.
-
-links that may help for django: 
-https://docs.djangoproject.com/en/5.0/ref/class-based-views/
-https://www.w3schools.com/django/django_template_variables.php
-
-using bootstrap might be easier for designing the website:
-https://getbootstrap.com/
-https://www.w3schools.com/bootstrap/bootstrap_get_started.asp
-
-API SECTION
-TMDb python documentation is helpful
-
-so make a new file inside film? or film search i forgot, we could call it tmdb.py
-
-then basically do the api requests there
-
-then we could connect it to the views file later on, calling on the function??? i'm not sure
-
-don't forget to migrate everytime you create a new "column"
-
-yes we can store it in the db, since it's for assignment (non-profit)
-
-andd also if they ask why change to python, obv mention flexibility, current trend, and future development (AI) as well as security for sure we can look into it again
+# Running the code:
+Clone the repository from github or download the source code.
+Open your terminal or command prompt and navigate to the project directory where you want the source code to run from.
+If you’re using github, obtain the code url from the green button called code and write the following command in terminal ‘git clone "(add url here)"’ 
+To successfully clone the repository on your local machine, write ‘code film django’ in the terminal.
+To ensure code is up to date, write ‘git pull’ in the terminal. If not up to date, insert ‘git fetch’ to get the updated code.
+To check whether there have been no changes in the database, write ‘python manage.py makemigrations’. 
+If there are any changes, write ‘python manage.py migrate’ to insert the changes.
+To obtain the movies and their information from the TMDB API, after the migrations, write ‘python manage.py api_call 1 5’.
+‘1 5’ refers to the number of pages accessed by API. If more movies are required for testing purposes the following command can be executed ‘python manage.py api_call 1 10’.
+Once these steps are successfully completed, run the command ‘python manage.py runserver’.
+Within the terminal you will receive a URL which will lead you to the website’s homepage.
 
