@@ -5,11 +5,11 @@ Selecting movies for group viewing often leads to the common setback of someone 
 
 # Please follow each step carefully to ensure that the system is installed and configured correctly.
 
-# Installation:
+Installation:
 Python installation: As the ‘pip’ command is integral for our system’s use with Django, Python 3.4 or later needs to be used. The following link can be accessed in order to download Python for the first time: https://www.python.org/ .
 Installing Django: Enter the following command within the terminal to install Django:‘pip install Django’ in the terminal. Use “pip --version” to ensure you have pip, if not then download from https://pypi.org/project/pip/ .
 
-# Running the code:
+Running the code:
 Clone the repository from github or download the source code.
 Open your terminal or command prompt and navigate to the project directory where you want the source code to run from.
 If you’re using github, obtain the code url from the green button called code and write the following command in terminal ‘git clone "(add url here)"’ 
