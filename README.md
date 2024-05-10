@@ -3,11 +3,12 @@ Group 8: Aaliyah Gangat, Alex Goddard, Putri Monica, Rafi’ah Nadeem, Samiya Al
 
 Selecting movies for group viewing often leads to the common setback of someone having already seen the chosen film. Our system addresses this by offering a movie suggestion engine that integrates user preferences. Users create accounts, input relevant details, and add friends to form a network. To ensure data security, our system employs encryption algorithms and multiple password-protected databases. We will then perform multiple SQL queries to identify ‘matches’. Drawing inspiration from Tinder, our interface displays movies with their posters, a brief synopsis, and main cast members, users can then mark a movie as watched or ‘swipe’ to show their preference. These movies will be randomly generated using the TMDb API. When linked users indicate similar preferences, the system identifies and recommends these mutual choices. This streamlined approach aims to simplify movie selection among friends, ensuring a more cohesive and enjoyable viewing experience.
 
-# Follow each step carefully to ensure the system is configured correctly.
+# Follow carefully to ensure the system is configured correctly.
 
 Installation:
 
 Python installation: As the ‘pip’ command is integral for our system’s use with Django, Python 3.4 or later needs to be used. The following link can be accessed in order to download Python for the first time: https://www.python.org/ .
+
 Installing Django: Enter the following command within the terminal to install Django:‘pip install Django’ in the terminal. Use “pip --version” to ensure you have pip, if not then download from https://pypi.org/project/pip/ .
 
 Running the code:
